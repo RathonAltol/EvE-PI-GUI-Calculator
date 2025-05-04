@@ -1,0 +1,3 @@
+([('eve_pi_gui_calculator',
+   '/Users/rathon/Library/CloudStorage/OneDrive-NursingWithAPurpose/Development/Eve-PI-GUI-Calclator/dist/eve_pi_gui_calculator',
+   'EXECUTABLE')],)
