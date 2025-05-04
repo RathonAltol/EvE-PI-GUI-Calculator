@@ -1,6 +1,7 @@
 import json
 import tkinter as tk
 from tkinter import scrolledtext
+from PIL import Image, ImageTk  # Import PIL for image handling
 
 # Load P4 to P1 data from JSON file
 try:
@@ -25,6 +26,18 @@ p4_items = [
 root = tk.Tk()
 root.title("EVE PI P4 -> P1 Calculator")
 
+# Dictionary to hold image objects
+p4_images = {}
+
+# Load images for each P4 item (AFTER root is created)
+for item in p4_items:
+    try:
+        img = Image.open(f"Images/{item}.png")  # Adjusted to look in the 'Images' folder
+        img = img.resize((50, 50), Image.Resampling.LANCZOS)  # Use LANCZOS for high-quality resizing
+        p4_images[item] = ImageTk.PhotoImage(img)  # Create PhotoImage after root is initialized
+    except FileNotFoundError:
+        p4_images[item] = None  # If image is not found, set to None
+
 # Use a frame to hold the list of items and entries
 input_frame = tk.Frame(root)
 input_frame.pack(padx=10, pady=10, anchor='w')
@@ -34,6 +47,13 @@ entries = {}
 for item in p4_items:
     row_frame = tk.Frame(input_frame)
     row_frame.pack(fill='x', pady=2)
+    
+    # Display image if available
+    if p4_images[item]:
+        tk.Label(row_frame, image=p4_images[item]).pack(side='left', padx=5)
+    else:
+        tk.Label(row_frame, text="[No Image]", width=10, anchor='w').pack(side='left', padx=5)
+    
     tk.Label(row_frame, text=item, width=30, anchor='w').pack(side='left')
     qty_entry = tk.Entry(row_frame, width=6)
     qty_entry.pack(side='left', padx=5)
