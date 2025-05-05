@@ -57,7 +57,7 @@ for item in p4_items:
     tk.Label(row_frame, text=item, width=30, anchor='w').pack(side='left')
     qty_entry = tk.Entry(row_frame, width=6)
     qty_entry.pack(side='left', padx=5)
-    qty_entry.insert(0, "75")
+    qty_entry.insert(0, "0")  # Set starting value to 0
     entries[item] = qty_entry
 
 def calculate_requirements():
@@ -129,9 +129,24 @@ def calculate_requirements():
     output_area.delete('1.0', tk.END)
     output_area.insert(tk.END, "\n".join(output_lines))
 
-# Create Calculate button and output area AFTER function definition
-calc_button = tk.Button(root, text="Calculate", command=calculate_requirements)
-calc_button.pack(pady=5)
+def clear_inputs():
+    # Clear all input fields
+    for entry in entries.values():
+        entry.delete(0, tk.END)
+        entry.insert(0, "0")  # Reset to default value (e.g., 0)
+    # Clear the output area
+    output_area.delete('1.0', tk.END)
+    output_area.insert(tk.END, "Enter quantities and click Calculate to see required P1 materials.\n")
+
+# Create a frame to hold both buttons side by side
+button_frame = tk.Frame(root)
+button_frame.pack(pady=5)
+
+calc_button = tk.Button(button_frame, text="Calculate", command=calculate_requirements)
+calc_button.pack(side='left', padx=5)
+
+clear_button = tk.Button(button_frame, text="Clear", command=clear_inputs)
+clear_button.pack(side='left', padx=5)
 
 output_area = scrolledtext.ScrolledText(root, wrap=tk.WORD, width=60, height=20)
 output_area.pack(padx=10, pady=10, fill='both', expand=True)
