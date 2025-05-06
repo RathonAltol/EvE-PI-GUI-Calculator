@@ -134,7 +134,7 @@ def calculate_requirements():
             else:
                 output_lines.append(f"{item} (0 units) requires no P1 materials.")
 
-    output_lines.append("\nTotal P1 materials required:")
+    output_lines.append("\nCalculated Totals for the P1 materials needed for the Tier of PI you selected:")
     if total_p1:
         for name, amt in total_p1.items():
             output_lines.append(f" - {name}: {int(amt)}")
@@ -186,7 +186,17 @@ def toggle_quantity_box(item, row):
 
 # ----------------------- UI BUILD -----------------------
 
-tk.Button(dropdown_frame, text="Select P4 Items", command=toggle_dropdown).pack()
+button_container = tk.Frame(dropdown_frame)  # Container to center all buttons
+button_container.pack(anchor='center', pady=10)
+
+# Add "Select P2 Items" button
+tk.Button(button_container, text="Select P2 Items", command=lambda: print("Select P2 Items clicked")).pack(side='left', padx=5)
+
+# Add "Select P3 Items" button
+tk.Button(button_container, text="Select P3 Items", command=lambda: print("Select P3 Items clicked")).pack(side='left', padx=5)
+
+# Add "Select P4 Items" button
+tk.Button(button_container, text="Select P4 Items", command=toggle_dropdown).pack(side='left', padx=5)
 
 # Create dropdown menu with checkboxes, images, and quantity boxes
 for item in P4_ITEMS:
