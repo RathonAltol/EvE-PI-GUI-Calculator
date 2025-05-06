@@ -1,17 +1,11 @@
 import json
 import tkinter as tk
 from tkinter import scrolledtext
-from PIL import Image, ImageTk  # Import PIL for image handling
+from PIL import Image, ImageTk
 
-# Load P4 to P1 data from JSON file
-try:
-    with open('pi_p4_data.json', 'r') as f:
-        p4_data = json.load(f)
-except FileNotFoundError:
-    raise SystemExit("Error: 'pi_p4_data.json' file not found. Please ensure it is in the same directory.")
+# ----------------------- CONSTANTS -----------------------
 
-# Hardcoded list of 8 P4 items
-p4_items = [
+P4_ITEMS = [
     "Broadcast Node",
     "Integrity Response Drones",
     "Nano-Factory",
@@ -22,134 +16,196 @@ p4_items = [
     "Wetware Mainframe"
 ]
 
-# Create main application window
-root = tk.Tk()
-root.title("EVE PI P4 -> P1 Calculator")
+IMAGE_DIR = "Images"
+JSON_FILE = "pi_p4_data.json"
 
-# Dictionary to hold image objects
+# ----------------------- LOAD DATA -----------------------
+
+try:
+    with open(JSON_FILE, 'r') as f:
+        p4_data = json.load(f)
+except FileNotFoundError:
+    raise SystemExit(f"Error: '{JSON_FILE}' file not found.")
+
+# ----------------------- INITIALIZE TK -----------------------
+
+root = tk.Tk()
+root.title("EVE PI P4 → P1 Calculator")
+
+selected_p4 = {item: tk.BooleanVar(value=False) for item in P4_ITEMS}
+entries = {}
 p4_images = {}
 
-# Load images for each P4 item (AFTER root is created)
-for item in p4_items:
+# ----------------------- LOAD IMAGES (PRESERVE ASPECT RATIO) -----------------------
+
+for item in P4_ITEMS:
     try:
-        img = Image.open(f"Images/{item}.png")  # Adjusted to look in the 'Images' folder
-        img = img.resize((50, 50), Image.Resampling.LANCZOS)  # Use LANCZOS for high-quality resizing
-        p4_images[item] = ImageTk.PhotoImage(img)  # Create PhotoImage after root is initialized
+        img = Image.open(f"{IMAGE_DIR}/{item}.png")
+        img.thumbnail((50, 50), Image.Resampling.LANCZOS)
+        p4_images[item] = ImageTk.PhotoImage(img)
     except FileNotFoundError:
-        p4_images[item] = None  # If image is not found, set to None
+        p4_images[item] = None
 
-# Use a frame to hold the list of items and entries
+# ----------------------- UI COMPONENTS -----------------------
+
+dropdown_frame = tk.Frame(root)
+dropdown_frame.pack(padx=10, pady=10, anchor='n')
+
+dropdown_menu = tk.Frame(root, relief=tk.RAISED, borderwidth=1)  # Removed fixed width
+dropdown_menu.pack_propagate(True)  # Allow resizing based on child widgets
+button_frame = tk.Frame(root)
 input_frame = tk.Frame(root)
-input_frame.pack(padx=10, pady=10, anchor='w')
+output_frame = tk.Frame(root)
 
-entries = {}
+output_area = scrolledtext.ScrolledText(output_frame, wrap=tk.WORD, width=60, height=20)
+output_area.pack(padx=10, pady=10, fill='both', expand=True)
+output_area.insert(tk.END, "Enter quantities and click Calculate to see required P1 materials.\n")
 
-for item in p4_items:
-    row_frame = tk.Frame(input_frame)
-    row_frame.pack(fill='x', pady=2)
-    
-    # Display image if available
-    if p4_images[item]:
-        tk.Label(row_frame, image=p4_images[item]).pack(side='left', padx=5)
+button_frame.pack(pady=10)
+output_frame.pack(padx=10, pady=10, fill='both', expand=True)
+
+# ----------------------- FUNCTIONS -----------------------
+
+def build_input_fields():
+    for widget in input_frame.winfo_children():
+        widget.destroy()
+    for item, is_selected in selected_p4.items():
+        if is_selected.get():
+            row = tk.Frame(input_frame)
+            row.pack(fill='x', pady=2)
+
+            img = p4_images[item]
+            if img:
+                tk.Label(row, image=img).pack(side='left', padx=5)
+            else:
+                tk.Label(row, text="[No Image]", width=10).pack(side='left', padx=5)
+
+            tk.Label(row, text=item, width=30, anchor='w').pack(side='left')
+
+            qty_entry = tk.Entry(row, width=6)
+            qty_entry.insert(0, "0")
+            qty_entry.pack(side='left', padx=5)
+            entries[item] = qty_entry
+    input_frame.pack(padx=10, pady=10, anchor='center')
+
+def toggle_dropdown():
+    """Toggle visibility of dropdown menu."""
+    if dropdown_menu.winfo_ismapped():
+        dropdown_menu.pack_forget()
     else:
-        tk.Label(row_frame, text="[No Image]", width=10, anchor='w').pack(side='left', padx=5)
-    
-    tk.Label(row_frame, text=item, width=30, anchor='w').pack(side='left')
-    qty_entry = tk.Entry(row_frame, width=6)
-    qty_entry.pack(side='left', padx=5)
-    qty_entry.insert(0, "0")  # Set starting value to 0
-    entries[item] = qty_entry
+        # Ensure dropdown menu is packed and visible
+        dropdown_menu.pack(padx=10, pady=10, anchor='center', before=button_frame)
 
 def calculate_requirements():
+    """Calculate P1 material requirements and display results."""
     output_area.delete('1.0', tk.END)
-    total_p1 = {}
-    output_lines = []
-    input_errors = []
+    total_p1, output_lines, input_errors = {}, [], []
+    p4_totals = {}  # Store total P1 materials for each individual P4 item
 
-    def recurse(item_name, amount_needed):
+    def recurse(item_name, qty_needed, p4_item=None):
+        """Recursively calculate P1 material requirements."""
         if item_name not in p4_data:
-            # It's a P1 material
-            total_p1[item_name] = total_p1.get(item_name, 0) + amount_needed
+            total_p1[item_name] = total_p1.get(item_name, 0) + qty_needed
+            if p4_item:
+                p4_totals[p4_item][item_name] = p4_totals[p4_item].get(item_name, 0) + qty_needed
             return
-        item_data = p4_data[item_name]
-        output_qty = item_data.get('output_qty', 1)
-        inputs = item_data.get('inputs', {})
-        multiplier = amount_needed / output_qty
-        for input_name, input_qty in inputs.items():
-            recurse(input_name, input_qty * multiplier)
+        data = p4_data[item_name]
+        multiplier = qty_needed / data.get('output_qty', 1)
+        for input_item, input_qty in data.get('inputs', {}).items():
+            recurse(input_item, input_qty * multiplier, p4_item)
 
-    for item, entry in entries.items():
-        qty_text = entry.get().strip()
-        if qty_text == "":
-            quantity = 0
-        else:
+    total_p4_qty = 0  # Track the total quantity of all selected P4 items
+
+    for item, is_selected in selected_p4.items():
+        if is_selected.get():
             try:
-                quantity = int(qty_text)
+                qty = int(entries[item].get().strip())
             except ValueError:
-                quantity = 0
+                qty = 0
                 input_errors.append(item)
-        if quantity < 0:
-            input_errors.append(item)
-            quantity = 0
 
-        if quantity > 0:
-            output_lines.append(f"{item} ({quantity} units) requires:")
-            temp_p1 = {}
-            def local_recurse(name, amt):
-                if name not in p4_data:
-                    temp_p1[name] = temp_p1.get(name, 0) + amt
-                    return
-                data = p4_data[name]
-                out_qty = data.get('output_qty', 1)
-                inputs = data.get('inputs', {})
-                multiplier = amt / out_qty
-                for sub_input, sub_amt in inputs.items():
-                    local_recurse(sub_input, sub_amt * multiplier)
-            local_recurse(item, quantity)
-            for p1_name, req_amount in temp_p1.items():
-                output_lines.append(f" - {p1_name}: {int(req_amount)}")
-                total_p1[p1_name] = total_p1.get(p1_name, 0) + req_amount
-            output_lines.append("")
-        else:
-            output_lines.append(f"{item} (0 units) requires no P1 materials.")
-            output_lines.append("")
+            if qty > 0:
+                total_p4_qty += qty  # Add to the total P4 quantity
+                output_lines.append(f"{item} ({qty} units) requires:")
+                p4_totals[item] = {}  # Initialize P1 totals for this P4 item
+                recurse(item, qty, p4_item=item)
+                for p1_name, p1_qty in p4_totals[item].items():
+                    output_lines.append(f"   - {p1_name}: {int(p1_qty)}")
+            else:
+                output_lines.append(f"{item} (0 units) requires no P1 materials.")
 
-    output_lines.append("Total P1 materials required for all selected P4s:")
+    output_lines.append("\nTotal P1 materials required:")
     if total_p1:
-        for p1_name, total_amount in total_p1.items():
-            output_lines.append(f" - {p1_name}: {int(total_amount)}")
+        for name, amt in total_p1.items():
+            output_lines.append(f" - {name}: {int(amt)}")
     else:
         output_lines.append(" - None (no P4 items selected).")
 
-    if input_errors:
-        output_lines.append("")
-        output_lines.append("(*) Note: Non-numeric or invalid inputs were detected for: "
-                            + ", ".join(input_errors) + ". Treated as 0.")
+    output_lines.append(f"\nTotal quantity of all selected P4 items: {total_p4_qty}")
 
-    output_area.delete('1.0', tk.END)
+    if input_errors:
+        output_lines.append("\nInvalid inputs for: " + ", ".join(input_errors))
+
     output_area.insert(tk.END, "\n".join(output_lines))
 
 def clear_inputs():
-    # Clear all input fields
+    """Reset input fields, uncheck all selected P4 items, clear the output area, and hide the P4 list."""
+    # Remove all quantity boxes
     for entry in entries.values():
-        entry.delete(0, tk.END)
-        entry.insert(0, "0")  # Reset to default value (e.g., 0)
+        entry.destroy()  # Remove the quantity box widget
+    entries.clear()  # Clear the entries dictionary
+
+    # Uncheck all checkboxes
+    for item in selected_p4.values():
+        item.set(False)
+
     # Clear the output area
     output_area.delete('1.0', tk.END)
     output_area.insert(tk.END, "Enter quantities and click Calculate to see required P1 materials.\n")
 
-# Create a frame to hold both buttons side by side
-button_frame = tk.Frame(root)
-button_frame.pack(pady=5)
+    # Hide the dropdown menu
+    dropdown_menu.pack_forget()
 
-calc_button = tk.Button(button_frame, text="Calculate", command=calculate_requirements)
-calc_button.pack(side='left', padx=5)
+    # Clear the input frame (reset to initial state)
+    for widget in input_frame.winfo_children():
+        widget.destroy()
 
-clear_button = tk.Button(button_frame, text="Clear", command=clear_inputs)
-clear_button.pack(side='left', padx=5)
+def toggle_quantity_box(item, row):
+    """Show or hide the quantity box next to the selected P4 item."""
+    if selected_p4[item].get():
+        # Create and show the quantity box next to the selected P4 item
+        qty_entry = tk.Entry(row, width=6)
+        qty_entry.pack(side='left', padx=5)
+        qty_entry.insert(0, "0")
+        entries[item] = qty_entry
+    else:
+        # Remove the quantity box if it exists
+        if item in entries:
+            entries[item].destroy()
+            del entries[item]
 
-output_area = scrolledtext.ScrolledText(root, wrap=tk.WORD, width=60, height=20)
-output_area.pack(padx=10, pady=10, fill='both', expand=True)
-output_area.insert(tk.END, "Enter quantities and click Calculate to see required P1 materials.\n")
+# ----------------------- UI BUILD -----------------------
 
+tk.Button(dropdown_frame, text="Select P4 Items", command=toggle_dropdown).pack()
+
+# Create dropdown menu with checkboxes, images, and quantity boxes
+for item in P4_ITEMS:
+    row = tk.Frame(dropdown_menu)
+    row.pack(fill='x', pady=2)
+
+    # Display image if available
+    img = p4_images[item]
+    if img:
+        tk.Label(row, image=img).pack(side='left', padx=5)
+    else:
+        tk.Label(row, text="[No Image]", width=10).pack(side='left', padx=5)
+
+    # Checkbox for selecting the P4 item
+    tk.Checkbutton(row, text=item, variable=selected_p4[item], 
+                   command=lambda i=item, r=row: toggle_quantity_box(i, r)).pack(side='left', anchor='w')
+
+tk.Button(button_frame, text="Calculate", command=calculate_requirements).pack(side='left', padx=5)
+tk.Button(button_frame, text="Clear", command=clear_inputs).pack(side='left', padx=5)
+
+# ----------------------- MAIN LOOP -----------------------
 root.mainloop()
