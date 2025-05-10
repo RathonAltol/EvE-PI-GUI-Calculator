@@ -16,6 +16,30 @@ P4_ITEMS = [
     "Wetware Mainframe"
 ]
 
+P3_ITEMS = [
+    "Biotech Research Reports",
+    "Camera Drones",
+    "Condensates",
+    "Cryoprotectant Solution",
+    "Data Chips",
+    "Gel-Matrix Biopaste",
+    "Guidance Systems",
+    "Hazmat Detection Systems",
+    "Hermetic Membranes",
+    "High-Tech Transmitters",
+    "Industrial Explosives",
+    "Neocoms",
+    "Nuclear Reactors",
+    "Planetary Vehicles",
+    "Robotics",
+    "Smartfab Units",
+    "Supercomputers",
+    "Sythetic Synapses",
+    "Transcranial Microcontrollers",
+    "Ukomi Super Conductors",
+    "Vaccines"
+]
+
 P2_ITEMS = [
     "Biocells",
     "Construction Blocks",
@@ -41,30 +65,6 @@ P2_ITEMS = [
     "Transmitter",
     "Viral Agent",
     "Water-Cooled CPU"
-]
-
-P3_ITEMS = [
-    "Biotech Research Reports",
-    "Camera Drones",
-    "Condensates",
-    "Cryoprotectant Solution",
-    "Data Chips",
-    "Gel-Matrix Biopaste",
-    "Guidance Systems",
-    "Hazmat Detection Systems",
-    "Hermetic Membranes",
-    "High-Tech Transmitters",
-    "Industrial Explosives",
-    "Neocoms",
-    "Nuclear Reactors",
-    "Planetary Vehicles",
-    "Robotics",
-    "Smartfab Units",
-    "Supercomputers",
-    "Sythetic Synapses",
-    "Transcranial Microcontrollers",
-    "Ukomi Super Conductors",
-    "Vaccines"
 ]
 
 IMAGE_DIR = "Images"
@@ -169,12 +169,18 @@ def hide_all_dropdowns():
     p2_dropdown_menu.pack_forget()
     p3_dropdown_menu.pack_forget()
 
+def clear_output_area():
+    """Clear the output area."""
+    output_area.delete('1.0', tk.END)
+    output_area.insert(tk.END, "Enter quantities and click Calculate to see required P1 materials.\n")
+
 def toggle_dropdown():
     """Toggle visibility of P4 dropdown menu."""
     if dropdown_menu.winfo_ismapped():
         dropdown_menu.pack_forget()
     else:
         hide_all_dropdowns()
+        clear_output_area()  # Clear output area when switching to P4
         dropdown_menu.pack(padx=10, pady=10, anchor='center', before=button_frame)
 
 def toggle_p2_dropdown():
@@ -183,6 +189,7 @@ def toggle_p2_dropdown():
         p2_dropdown_menu.pack_forget()
     else:
         hide_all_dropdowns()
+        clear_output_area()  # Clear output area when switching to P2
         p2_dropdown_menu.pack(padx=10, pady=10, anchor='center', before=button_frame)
 
 def toggle_p3_dropdown():
@@ -191,6 +198,7 @@ def toggle_p3_dropdown():
         p3_dropdown_menu.pack_forget()
     else:
         hide_all_dropdowns()
+        clear_output_area()  # Clear output area when switching to P3
         p3_dropdown_menu.pack(padx=10, pady=10, anchor='center', before=button_frame)
 
 def calculate_requirements():
@@ -267,19 +275,23 @@ def clear_inputs():
     for widget in input_frame.winfo_children():
         widget.destroy()
 
-def toggle_quantity_box(item, row):
-    """Show or hide the quantity box next to the selected P4 item."""
-    if selected_p4[item].get():
-        # Create and show the quantity box next to the selected P4 item
+def toggle_quantity_box(item, row, selected_dict, entries_dict, images_dict):
+    """Show or hide the quantity box next to the selected item."""
+    if selected_dict[item].get():
+        # Create and show the quantity box next to the selected item
         qty_entry = tk.Entry(row, width=6)
         qty_entry.pack(side='left', padx=5)
         qty_entry.insert(0, "0")
-        entries[item] = qty_entry
+
+        # Select the text when the entry gains focus
+        qty_entry.bind("<FocusIn>", lambda event: qty_entry.select_range(0, tk.END))
+
+        entries_dict[item] = qty_entry
     else:
         # Remove the quantity box if it exists
-        if item in entries:
-            entries[item].destroy()
-            del entries[item]
+        if item in entries_dict:
+            entries_dict[item].destroy()
+            del entries_dict[item]
 
 # ----------------------- UI BUILD -----------------------
 
@@ -295,7 +307,7 @@ tk.Button(button_container, text="Select P3 Items", command=toggle_p3_dropdown).
 # Add "Select P4 Items" button
 tk.Button(button_container, text="Select P4 Items", command=toggle_dropdown).pack(side='left', padx=5)
 
-# Create dropdown menu with checkboxes, images, and quantity boxes
+# Create dropdown menu with checkboxes, images, and quantity boxes for P4
 for item in P4_ITEMS:
     row = tk.Frame(dropdown_menu)
     row.pack(fill='x', pady=2)
@@ -309,9 +321,9 @@ for item in P4_ITEMS:
 
     # Checkbox for selecting the P4 item
     tk.Checkbutton(row, text=item, variable=selected_p4[item], 
-                   command=lambda i=item, r=row: toggle_quantity_box(i, r)).pack(side='left', anchor='w')
+                   command=lambda i=item, r=row: toggle_quantity_box(i, r, selected_p4, entries, p4_images)).pack(side='left', anchor='w')
 
-# Populate P2 dropdown menu
+# Populate P2 dropdown menu with quantity boxes
 for item in P2_ITEMS:
     row = tk.Frame(p2_dropdown_menu)
     row.pack(fill='x', pady=2)
@@ -324,9 +336,10 @@ for item in P2_ITEMS:
         tk.Label(row, text="[No Image]", width=10).pack(side='left', padx=5)
 
     # Checkbox for selecting the P2 item
-    tk.Checkbutton(row, text=item, variable=selected_p2[item]).pack(side='left', anchor='w')
+    tk.Checkbutton(row, text=item, variable=selected_p2[item], 
+                   command=lambda i=item, r=row: toggle_quantity_box(i, r, selected_p2, entries, p2_images)).pack(side='left', anchor='w')
 
-# Populate P3 dropdown menu
+# Populate P3 dropdown menu with quantity boxes
 for item in P3_ITEMS:
     row = tk.Frame(p3_dropdown_menu)
     row.pack(fill='x', pady=2)
@@ -339,10 +352,14 @@ for item in P3_ITEMS:
         tk.Label(row, text="[No Image]", width=10).pack(side='left', padx=5)
 
     # Checkbox for selecting the P3 item
-    tk.Checkbutton(row, text=item, variable=selected_p3[item]).pack(side='left', anchor='w')
+    tk.Checkbutton(row, text=item, variable=selected_p3[item], 
+                   command=lambda i=item, r=row: toggle_quantity_box(i, r, selected_p3, entries, p3_images)).pack(side='left', anchor='w')
 
 tk.Button(button_frame, text="Calculate", command=calculate_requirements).pack(side='left', padx=5)
 tk.Button(button_frame, text="Clear", command=clear_inputs).pack(side='left', padx=5)
+
+# Bind the Enter key to the calculate_requirements function
+root.bind('<Return>', lambda event: calculate_requirements())
 
 # ----------------------- MAIN LOOP -----------------------
 root.mainloop()
