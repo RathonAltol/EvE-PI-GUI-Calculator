@@ -1,0 +1,387 @@
+{
+  "Broadcast Node": {
+    "output_qty": 1,
+    "inputs": {
+      "Data Chips": 6,
+      "Neocoms": 6,
+      "High-Tech Transmitters": 6
+    }
+  },
+  "Data Chips": {
+    "output_qty": 3,
+    "inputs": {
+      "Supertensile Plastics": 10,
+      "Microfiber Shielding": 10
+    }
+  },
+  "Supertensile Plastics": {
+    "output_qty": 5,
+    "inputs": {
+      "Oxygen": 40,
+      "Biomass": 40
+    }
+  },
+  "Microfiber Shielding": {
+    "output_qty": 5,
+    "inputs": {
+      "Silicon": 40,
+      "Industrial Fibers": 40
+    }
+  },
+  "Neocoms": {
+    "output_qty": 3,
+    "inputs": {
+      "Biocells": 10,
+      "Silicate Glass": 10
+    }
+  },
+  "Biocells": {
+    "output_qty": 5,
+    "inputs": {
+      "Biofuels": 40,
+      "Precious Metals": 40
+    }
+  },
+  "Silicate Glass": {
+    "output_qty": 5,
+    "inputs": {
+      "Silicon": 40,
+      "Oxidizing Compound": 40
+    }
+  },
+  "High-Tech Transmitters": {
+    "output_qty": 3,
+    "inputs": {
+      "Transmitter": 10,
+      "Polyaramids": 10
+    }
+  },
+  "Transmitter": {
+    "output_qty": 5,
+    "inputs": {
+      "Chiral Structures": 40,
+      "Plasmoids": 40
+    }
+  },
+  "Polyaramids": {
+    "output_qty": 5,
+    "inputs": {
+      "Oxidizing Compound": 40,
+      "Industrial Fibers": 40
+    }
+  },
+  "Integrity Response Drones": {
+    "output_qty": 1,
+    "inputs": {
+      "Gel-Matrix Biopaste": 6,
+      "Planetary Vehicles": 6,
+      "Hazmat Detection Systems": 6
+    }
+  },
+  "Gel-Matrix Biopaste": {
+    "output_qty": 3,
+    "inputs": {
+      "Superconductors": 10,
+      "Biocells": 10,
+      "Oxides": 10
+    }
+  },
+  "Superconductors": {
+    "output_qty": 5,
+    "inputs": {
+      "Plasmoids": 40,
+      "Water": 40
+    }
+  },
+  "Oxides": {
+    "output_qty": 5,
+    "inputs": {
+      "Oxidizing Compound": 40,
+      "Oxygen": 40
+    }
+  },
+  "Planetary Vehicles": {
+    "output_qty": 5,
+    "inputs": {
+      "Supertensile Plastics": 10,
+      "Miniature Electronics": 10,
+      "Mechanical Parts": 10
+    }
+  },
+  "Miniature Electronics": {
+    "output_qty": 5,
+    "inputs": {
+      "Silicon": 40,
+      "Chiral Structures": 40
+    }
+  },
+  "Mechanical Parts": {
+    "output_qty": 5,
+    "inputs": {
+      "Reactive Metals": 40,
+      "Precious Metals": 40
+    }
+  },
+  "Hazmat Detection Systems": {
+    "output_qty": 3,
+    "inputs": {
+      "Transmitter": 10,
+      "Viral Agent": 10,
+      "Polytextiles": 10
+    }
+  },
+  "Viral Agent": {
+    "output_qty": 5,
+    "inputs": {
+      "Bacteria": 40,
+      "Biomass": 40
+    }
+  },
+  "Polytextiles": {
+    "output_qty": 5,
+    "inputs": {
+      "Biofuels": 40,
+      "Industrial Fibers": 40
+    }
+  },
+  "Nano-Factory": {
+    "output_qty": 1,
+    "inputs": {
+      "Industrial Explosives": 6,
+      "Ukomi Superconductors": 6,
+      "Reactive Metals": 40
+    }
+  },
+  "Industrial Explosives": {
+    "output_qty": 3,
+    "inputs": {
+      "Fertilizer": 10,
+      "Polytextiles": 10
+    }
+  },
+  "Fertilizer": {
+    "output_qty": 5,
+    "inputs": {
+      "Bacteria": 40,
+      "Proteins": 40
+    }
+  },
+  "Ukomi Superconductors": {
+    "output_qty": 3,
+    "inputs": {
+      "Superconductors": 10,
+      "Synthetic Oil": 10
+    }
+  },
+  "Synthetic Oil": {
+    "output_qty": 5,
+    "inputs": {
+      "Electrolytes": 40,
+      "Oxygen": 40
+    }
+  },
+  "Organic Mortar Applicators": {
+    "output_qty": 1,
+    "inputs": {
+      "Condensates": 6,
+      "Robotics": 6,
+      "Bacteria": 40
+    }
+  },
+  "Condensates": {
+    "output_qty": 3,
+    "inputs": {
+      "Coolant": 10,
+      "Oxides": 10
+    }
+  },
+  "Coolant": {
+    "output_qty": 5,
+    "inputs": {
+      "Electrolytes": 40,
+      "Water": 40
+    }
+  },
+  "Robotics": {
+    "output_qty": 3,
+    "inputs": {
+      "Consumer Electronics": 10,
+      "Mechanical Parts": 10
+    }
+  },
+  "Consumer Electronics": {
+    "output_qty": 5,
+    "inputs": {
+      "Toxic Metals": 40,
+      "Chiral Structures": 40
+    }
+  },
+  "Recursive Computing Module": {
+    "output_qty": 1,
+    "inputs": {
+      "Synthetic Synapses": 6,
+      "Transcranial Microcontrollers": 6,
+      "Guidance Systems": 6
+    }
+  },
+  "Synthetic Synapses": {
+    "output_qty": 3,
+    "inputs": {
+      "Supertensile Plastics": 10,
+      "Test Cultures": 10
+    }
+  },
+  "Test Cultures": {
+    "output_qty": 5,
+    "inputs": {
+      "Bacteria": 40,
+      "Water": 40
+    }
+  },
+  "Transcranial Microcontrollers": {
+    "output_qty": 3,
+    "inputs": {
+      "Biocells": 10,
+      "Nanites": 10
+    }
+  },
+  "Nanites": {
+    "output_qty": 5,
+    "inputs": {
+      "Reactive Metals": 40,
+      "Bacteria": 40
+    }
+  },
+  "Guidance Systems": {
+    "output_qty": 3,
+    "inputs": {
+      "Water-Cooled CPU": 10,
+      "Transmitter": 10
+    }
+  },
+  "Water-Cooled CPU": {
+    "output_qty": 5,
+    "inputs": {
+      "Reactive Metals": 40,
+      "Water": 40
+    }
+  },
+  "Self-Harmonizing Power Core": {
+    "output_qty": 1,
+    "inputs": {
+      "Nuclear Reactors": 6,
+      "Camera Drones": 6,
+      "Hermetic Membranes": 6
+    }
+  },
+  "Nuclear Reactors": {
+    "output_qty": 3,
+    "inputs": {
+      "Enriched Uranium": 10,
+      "Microfiber Shielding": 10
+    }
+  },
+  "Enriched Uranium": {
+    "output_qty": 5,
+    "inputs": {
+      "Toxic Metals": 40,
+      "Precious Metals": 40
+    }
+  },
+  "Camera Drones": {
+    "output_qty": 3,
+    "inputs": {
+      "Rocket Fuel": 10,
+      "Silicate Glass": 10
+    }
+  },
+  "Rocket Fuel": {
+    "output_qty": 5,
+    "inputs": {
+      "Electrolytes": 40,
+      "Plasmoids": 40
+    }
+  },
+  "Hermetic Membranes": {
+    "output_qty": 3,
+    "inputs": {
+      "Polyaramids": 10,
+      "Genetically Enhanced Livestock": 10
+    }
+  },
+  "Genetically Enhanced Livestock": {
+    "output_qty": 5,
+    "inputs": {
+      "Proteins": 40,
+      "Biomass": 40
+    }
+  },
+  "Sterile Conduits": {
+    "output_qty": 1,
+    "inputs": {
+      "Vaccines": 6,
+      "Smartfab Units": 6,
+      "Water": 40
+    }
+  },
+  "Vaccines": {
+    "output_qty": 3,
+    "inputs": {
+      "Livestock": 10,
+      "Viral Agent": 10
+    }
+  },
+  "Livestock": {
+    "output_qty": 5,
+    "inputs": {
+      "Biofuels": 40,
+      "Proteins": 40
+    }
+  },
+  "Smartfab Units": {
+    "output_qty": 3,
+    "inputs": {
+      "Miniature Electronics": 10,
+      "Construction Blocks": 10
+    }
+  },
+  "Construction Blocks": {
+    "output_qty": 5,
+    "inputs": {
+      "Toxic Metals": 40,
+      "Reactive Metals": 40
+    }
+  },
+  "Wetware Mainframe": {
+    "output_qty": 1,
+    "inputs": {
+      "Biotech Research Reports": 6,
+      "Supercomputers": 6,
+      "Cryoprotectant Solution": 6
+    }
+  },
+  "Biotech Research Reports": {
+    "output_qty": 3,
+    "inputs": {
+      "Construction Blocks": 10,
+      "Livestock": 10,
+      "Nanites": 10
+    }
+  },
+  "Supercomputers": {
+    "output_qty": 3,
+    "inputs": {
+      "Water-Cooled CPU": 10,
+      "Coolant": 10,
+      "Consumer Electronics": 10
+    }
+  },
+  "Cryoprotectant Solution": {
+    "output_qty": 3,
+    "inputs": {
+      "Synthetic Oil": 10,
+      "Fertilizer": 10,
+      "Test Cultures": 10
+    }
+  }
+}
