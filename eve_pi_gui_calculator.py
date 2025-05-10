@@ -16,6 +16,57 @@ P4_ITEMS = [
     "Wetware Mainframe"
 ]
 
+P2_ITEMS = [
+    "Biocells",
+    "Construction Blocks",
+    "Consumer Electronics",
+    "Coolant",
+    "Enriched Uranium",
+    "Fertilizer",
+    "Genetically Enhanced Livestock",
+    "Livestock",
+    "Mechanical Parts",
+    "Microfiber Shielding",
+    "Minature Electronics",
+    "Nanites",
+    "Oxides",
+    "Polyaramids",
+    "Polytextiles",
+    "Rocket Fule",
+    "Silicate Glass",
+    "Superconductors",
+    "Supertensile Plastics",
+    "Synthetic Oil",
+    "Test Cultures",
+    "Transmitter",
+    "Viral Agent",
+    "Water-Cooled CPU"
+]
+
+P3_ITEMS = [
+    "Biotech Research Reports",
+    "Camera Drones",
+    "Condensates",
+    "Cryoprotectant Solution",
+    "Data Chips",
+    "Gel-Matrix Biopaste",
+    "Guidance Systems",
+    "Hazmat Detection Systems",
+    "Hermetic Membranes",
+    "High-Tech Transmitters",
+    "Industrial Explosives",
+    "Neocoms",
+    "Nuclear Reactors",
+    "Planetary Vehicles",
+    "Robotics",
+    "Smartfab Units",
+    "Supercomputers",
+    "Sythetic Synapses",
+    "Transcranial Microcontrollers",
+    "Ukomi Super Conductors",
+    "Vaccines"
+]
+
 IMAGE_DIR = "Images"
 JSON_FILE = "pi_p4_data.json"
 
@@ -33,8 +84,12 @@ root = tk.Tk()
 root.title("EVE PI P4 → P1 Calculator")
 
 selected_p4 = {item: tk.BooleanVar(value=False) for item in P4_ITEMS}
+selected_p2 = {item: tk.BooleanVar(value=False) for item in P2_ITEMS}
+selected_p3 = {item: tk.BooleanVar(value=False) for item in P3_ITEMS}
 entries = {}
 p4_images = {}
+p2_images = {}
+p3_images = {}
 
 # ----------------------- LOAD IMAGES (PRESERVE ASPECT RATIO) -----------------------
 
@@ -46,6 +101,22 @@ for item in P4_ITEMS:
     except FileNotFoundError:
         p4_images[item] = None
 
+for item in P2_ITEMS:
+    try:
+        img = Image.open(f"{IMAGE_DIR}/{item}.png")
+        img.thumbnail((50, 50), Image.Resampling.LANCZOS)
+        p2_images[item] = ImageTk.PhotoImage(img)
+    except FileNotFoundError:
+        p2_images[item] = None
+
+for item in P3_ITEMS:
+    try:
+        img = Image.open(f"{IMAGE_DIR}/{item}.png")
+        img.thumbnail((50, 50), Image.Resampling.LANCZOS)
+        p3_images[item] = ImageTk.PhotoImage(img)
+    except FileNotFoundError:
+        p3_images[item] = None
+
 # ----------------------- UI COMPONENTS -----------------------
 
 dropdown_frame = tk.Frame(root)
@@ -53,6 +124,10 @@ dropdown_frame.pack(padx=10, pady=10, anchor='n')
 
 dropdown_menu = tk.Frame(root, relief=tk.RAISED, borderwidth=1)  # Removed fixed width
 dropdown_menu.pack_propagate(True)  # Allow resizing based on child widgets
+p2_dropdown_menu = tk.Frame(root, relief=tk.RAISED, borderwidth=1)
+p2_dropdown_menu.pack_propagate(True)
+p3_dropdown_menu = tk.Frame(root, relief=tk.RAISED, borderwidth=1)
+p3_dropdown_menu.pack_propagate(True)
 button_frame = tk.Frame(root)
 input_frame = tk.Frame(root)
 output_frame = tk.Frame(root)
@@ -88,13 +163,35 @@ def build_input_fields():
             entries[item] = qty_entry
     input_frame.pack(padx=10, pady=10, anchor='center')
 
+def hide_all_dropdowns():
+    """Hide all dropdown menus."""
+    dropdown_menu.pack_forget()
+    p2_dropdown_menu.pack_forget()
+    p3_dropdown_menu.pack_forget()
+
 def toggle_dropdown():
-    """Toggle visibility of dropdown menu."""
+    """Toggle visibility of P4 dropdown menu."""
     if dropdown_menu.winfo_ismapped():
         dropdown_menu.pack_forget()
     else:
-        # Ensure dropdown menu is packed and visible
+        hide_all_dropdowns()
         dropdown_menu.pack(padx=10, pady=10, anchor='center', before=button_frame)
+
+def toggle_p2_dropdown():
+    """Toggle visibility of P2 dropdown menu."""
+    if p2_dropdown_menu.winfo_ismapped():
+        p2_dropdown_menu.pack_forget()
+    else:
+        hide_all_dropdowns()
+        p2_dropdown_menu.pack(padx=10, pady=10, anchor='center', before=button_frame)
+
+def toggle_p3_dropdown():
+    """Toggle visibility of P3 dropdown menu."""
+    if p3_dropdown_menu.winfo_ismapped():
+        p3_dropdown_menu.pack_forget()
+    else:
+        hide_all_dropdowns()
+        p3_dropdown_menu.pack(padx=10, pady=10, anchor='center', before=button_frame)
 
 def calculate_requirements():
     """Calculate P1 material requirements and display results."""
@@ -190,10 +287,10 @@ button_container = tk.Frame(dropdown_frame)  # Container to center all buttons
 button_container.pack(anchor='center', pady=10)
 
 # Add "Select P2 Items" button
-tk.Button(button_container, text="Select P2 Items", command=lambda: print("Select P2 Items clicked")).pack(side='left', padx=5)
+tk.Button(button_container, text="Select P2 Items", command=toggle_p2_dropdown).pack(side='left', padx=5)
 
 # Add "Select P3 Items" button
-tk.Button(button_container, text="Select P3 Items", command=lambda: print("Select P3 Items clicked")).pack(side='left', padx=5)
+tk.Button(button_container, text="Select P3 Items", command=toggle_p3_dropdown).pack(side='left', padx=5)
 
 # Add "Select P4 Items" button
 tk.Button(button_container, text="Select P4 Items", command=toggle_dropdown).pack(side='left', padx=5)
@@ -213,6 +310,36 @@ for item in P4_ITEMS:
     # Checkbox for selecting the P4 item
     tk.Checkbutton(row, text=item, variable=selected_p4[item], 
                    command=lambda i=item, r=row: toggle_quantity_box(i, r)).pack(side='left', anchor='w')
+
+# Populate P2 dropdown menu
+for item in P2_ITEMS:
+    row = tk.Frame(p2_dropdown_menu)
+    row.pack(fill='x', pady=2)
+
+    # Display image if available
+    img = p2_images[item]
+    if img:
+        tk.Label(row, image=img).pack(side='left', padx=5)
+    else:
+        tk.Label(row, text="[No Image]", width=10).pack(side='left', padx=5)
+
+    # Checkbox for selecting the P2 item
+    tk.Checkbutton(row, text=item, variable=selected_p2[item]).pack(side='left', anchor='w')
+
+# Populate P3 dropdown menu
+for item in P3_ITEMS:
+    row = tk.Frame(p3_dropdown_menu)
+    row.pack(fill='x', pady=2)
+
+    # Display image if available
+    img = p3_images[item]
+    if img:
+        tk.Label(row, image=img).pack(side='left', padx=5)
+    else:
+        tk.Label(row, text="[No Image]", width=10).pack(side='left', padx=5)
+
+    # Checkbox for selecting the P3 item
+    tk.Checkbutton(row, text=item, variable=selected_p3[item]).pack(side='left', anchor='w')
 
 tk.Button(button_frame, text="Calculate", command=calculate_requirements).pack(side='left', padx=5)
 tk.Button(button_frame, text="Clear", command=clear_inputs).pack(side='left', padx=5)
