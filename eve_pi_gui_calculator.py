@@ -82,6 +82,7 @@ except FileNotFoundError:
 
 root = tk.Tk()
 root.title("EVE PI P4 → P1 Calculator")
+root.geometry("800x600")  # Set default window size
 
 selected_p4 = {item: tk.BooleanVar(value=False) for item in P4_ITEMS}
 selected_p2 = {item: tk.BooleanVar(value=False) for item in P2_ITEMS}
@@ -101,14 +102,6 @@ for item in P4_ITEMS:
     except FileNotFoundError:
         p4_images[item] = None
 
-for item in P2_ITEMS:
-    try:
-        img = Image.open(f"{IMAGE_DIR}/{item}.png")
-        img.thumbnail((50, 50), Image.Resampling.LANCZOS)
-        p2_images[item] = ImageTk.PhotoImage(img)
-    except FileNotFoundError:
-        p2_images[item] = None
-
 for item in P3_ITEMS:
     try:
         img = Image.open(f"{IMAGE_DIR}/{item}.png")
@@ -116,6 +109,14 @@ for item in P3_ITEMS:
         p3_images[item] = ImageTk.PhotoImage(img)
     except FileNotFoundError:
         p3_images[item] = None
+
+for item in P2_ITEMS:
+    try:
+        img = Image.open(f"{IMAGE_DIR}/{item}.png")
+        img.thumbnail((50, 50), Image.Resampling.LANCZOS)
+        p2_images[item] = ImageTk.PhotoImage(img)
+    except FileNotFoundError:
+        p2_images[item] = None
 
 # ----------------------- UI COMPONENTS -----------------------
 
@@ -138,6 +139,47 @@ output_area.insert(tk.END, "Enter quantities and click Calculate to see required
 
 button_frame.pack(pady=10)
 output_frame.pack(padx=10, pady=10, fill='both', expand=True)
+
+# Add scrollable dropdown menus for P2, P3, and P4
+p4_scrollbar = tk.Scrollbar(dropdown_menu, orient=tk.VERTICAL)
+p4_canvas = tk.Canvas(dropdown_menu, yscrollcommand=p4_scrollbar.set, height=300)  # Limit height
+p4_scrollbar.config(command=p4_canvas.yview)
+p4_scrollbar.pack(side='right', fill='y')
+p4_canvas.pack(side='left', fill='both', expand=True)
+p4_inner_frame = tk.Frame(p4_canvas)
+p4_canvas.create_window((0, 0), window=p4_inner_frame, anchor='nw')
+
+p2_scrollbar = tk.Scrollbar(p2_dropdown_menu, orient=tk.VERTICAL)
+p2_canvas = tk.Canvas(p2_dropdown_menu, yscrollcommand=p2_scrollbar.set, height=300)  # Limit height
+p2_scrollbar.config(command=p2_canvas.yview)
+p2_scrollbar.pack(side='right', fill='y')
+p2_canvas.pack(side='left', fill='both', expand=True)
+p2_inner_frame = tk.Frame(p2_canvas)
+p2_canvas.create_window((0, 0), window=p2_inner_frame, anchor='nw')
+
+p3_scrollbar = tk.Scrollbar(p3_dropdown_menu, orient=tk.VERTICAL)
+p3_canvas = tk.Canvas(p3_dropdown_menu, yscrollcommand=p3_scrollbar.set, height=300)  # Limit height
+p3_scrollbar.config(command=p3_canvas.yview)
+p3_scrollbar.pack(side='right', fill='y')
+p3_canvas.pack(side='left', fill='both', expand=True)
+p3_inner_frame = tk.Frame(p3_canvas)
+p3_canvas.create_window((0, 0), window=p3_inner_frame, anchor='nw')
+
+# Update scroll region when content changes
+def update_scroll_region(canvas, inner_frame):
+    canvas.update_idletasks()
+    canvas.config(scrollregion=canvas.bbox("all"))
+
+# Enable mouse wheel scrolling for P2, P3, and P4 dropdowns
+def bind_mouse_wheel(canvas):
+    def on_mouse_wheel(event):
+        canvas.yview_scroll(-1 * int(event.delta / 120), "units")
+    canvas.bind("<Enter>", lambda _: canvas.bind_all("<MouseWheel>", on_mouse_wheel))
+    canvas.bind("<Leave>", lambda _: canvas.unbind_all("<MouseWheel>"))
+
+bind_mouse_wheel(p4_canvas)
+bind_mouse_wheel(p2_canvas)
+bind_mouse_wheel(p3_canvas)
 
 # ----------------------- FUNCTIONS -----------------------
 
@@ -172,7 +214,21 @@ def hide_all_dropdowns():
 def clear_output_area():
     """Clear the output area."""
     output_area.delete('1.0', tk.END)
-    output_area.insert(tk.END, "Enter quantities and click Calculate to see required P1 materials.\n")
+    output_area.insert(tk.END, "Enter quantities above and click Calculate to see required P1 materials.\n")
+
+def reset_tier(selected_dict, entries_dict):
+    """Reset all items for the selected tier of PI."""
+    # Uncheck all checkboxes
+    for var in selected_dict.values():
+        var.set(False)
+    # Clear all quantity boxes
+    for entry in entries_dict.values():
+        entry.destroy()
+    entries_dict.clear()
+
+def reset_window_geometry():
+    """Reset the window to its default size and shape."""
+    root.geometry("800x600")
 
 def toggle_dropdown():
     """Toggle visibility of P4 dropdown menu."""
@@ -180,17 +236,10 @@ def toggle_dropdown():
         dropdown_menu.pack_forget()
     else:
         hide_all_dropdowns()
+        reset_tier(selected_p4, entries)  # Reset P4 items
         clear_output_area()  # Clear output area when switching to P4
         dropdown_menu.pack(padx=10, pady=10, anchor='center', before=button_frame)
-
-def toggle_p2_dropdown():
-    """Toggle visibility of P2 dropdown menu."""
-    if p2_dropdown_menu.winfo_ismapped():
-        p2_dropdown_menu.pack_forget()
-    else:
-        hide_all_dropdowns()
-        clear_output_area()  # Clear output area when switching to P2
-        p2_dropdown_menu.pack(padx=10, pady=10, anchor='center', before=button_frame)
+    reset_window_geometry()  # Ensure default size
 
 def toggle_p3_dropdown():
     """Toggle visibility of P3 dropdown menu."""
@@ -198,8 +247,21 @@ def toggle_p3_dropdown():
         p3_dropdown_menu.pack_forget()
     else:
         hide_all_dropdowns()
+        reset_tier(selected_p3, entries)  # Reset P3 items
         clear_output_area()  # Clear output area when switching to P3
         p3_dropdown_menu.pack(padx=10, pady=10, anchor='center', before=button_frame)
+    reset_window_geometry()  # Ensure default size
+
+def toggle_p2_dropdown():
+    """Toggle visibility of P2 dropdown menu."""
+    if p2_dropdown_menu.winfo_ismapped():
+        p2_dropdown_menu.pack_forget()
+    else:
+        hide_all_dropdowns()
+        reset_tier(selected_p2, entries)  # Reset P2 items
+        clear_output_area()  # Clear output area when switching to P2
+        p2_dropdown_menu.pack(padx=10, pady=10, anchor='center', before=button_frame)
+    reset_window_geometry()  # Ensure default size
 
 def calculate_requirements():
     """Calculate P1 material requirements and display results."""
@@ -298,18 +360,18 @@ def toggle_quantity_box(item, row, selected_dict, entries_dict, images_dict):
 button_container = tk.Frame(dropdown_frame)  # Container to center all buttons
 button_container.pack(anchor='center', pady=10)
 
-# Add "Select P2 Items" button
+# Add "Select P2 Items" button (displayed first)
 tk.Button(button_container, text="Select P2 Items", command=toggle_p2_dropdown).pack(side='left', padx=5)
 
-# Add "Select P3 Items" button
+# Add "Select P3 Items" button (displayed second)
 tk.Button(button_container, text="Select P3 Items", command=toggle_p3_dropdown).pack(side='left', padx=5)
 
-# Add "Select P4 Items" button
+# Add "Select P4 Items" button (displayed third)
 tk.Button(button_container, text="Select P4 Items", command=toggle_dropdown).pack(side='left', padx=5)
 
 # Create dropdown menu with checkboxes, images, and quantity boxes for P4
 for item in P4_ITEMS:
-    row = tk.Frame(dropdown_menu)
+    row = tk.Frame(p4_inner_frame)
     row.pack(fill='x', pady=2)
 
     # Display image if available
@@ -323,9 +385,11 @@ for item in P4_ITEMS:
     tk.Checkbutton(row, text=item, variable=selected_p4[item], 
                    command=lambda i=item, r=row: toggle_quantity_box(i, r, selected_p4, entries, p4_images)).pack(side='left', anchor='w')
 
+update_scroll_region(p4_canvas, p4_inner_frame)
+
 # Populate P2 dropdown menu with quantity boxes
 for item in P2_ITEMS:
-    row = tk.Frame(p2_dropdown_menu)
+    row = tk.Frame(p2_inner_frame)
     row.pack(fill='x', pady=2)
 
     # Display image if available
@@ -339,9 +403,11 @@ for item in P2_ITEMS:
     tk.Checkbutton(row, text=item, variable=selected_p2[item], 
                    command=lambda i=item, r=row: toggle_quantity_box(i, r, selected_p2, entries, p2_images)).pack(side='left', anchor='w')
 
+update_scroll_region(p2_canvas, p2_inner_frame)
+
 # Populate P3 dropdown menu with quantity boxes
 for item in P3_ITEMS:
-    row = tk.Frame(p3_dropdown_menu)
+    row = tk.Frame(p3_inner_frame)
     row.pack(fill='x', pady=2)
 
     # Display image if available
@@ -354,6 +420,8 @@ for item in P3_ITEMS:
     # Checkbox for selecting the P3 item
     tk.Checkbutton(row, text=item, variable=selected_p3[item], 
                    command=lambda i=item, r=row: toggle_quantity_box(i, r, selected_p3, entries, p3_images)).pack(side='left', anchor='w')
+
+update_scroll_region(p3_canvas, p3_inner_frame)
 
 tk.Button(button_frame, text="Calculate", command=calculate_requirements).pack(side='left', padx=5)
 tk.Button(button_frame, text="Clear", command=clear_inputs).pack(side='left', padx=5)
