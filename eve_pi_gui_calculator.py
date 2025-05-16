@@ -86,6 +86,25 @@ P1_ITEMS = [
     "Water"
 ]
 
+# P0 (Raw Materials) Items
+P0_ITEMS = [
+    "Aqueous Liquids",
+    "Base Metals",
+    "Carbon Compounds",
+    "Complex Organisms",
+    "Felsic Magma",
+    "Heavy Metals",
+    "Ionic Solutions",
+    "Micro Organisms",
+    "Noble Gas",
+    "Noble Metals",
+    "Non-CS Crystals",
+    "Planktic Colonies",
+    "Reactive Gas",
+    "Suspended Plasma",
+    "Autotrophs"
+]
+
 IMAGE_DIR = "Images"
 JSON_FILE = "pi_p4_data.json"
 
@@ -370,7 +389,7 @@ def resize_for_dropdown(dropdown_menu):
     above_height = (
         dropdown_frame.winfo_height() +
         button_frame.winfo_height() +
-        40  # extra margin for paddings/titlebar
+        40  # extra margin for paddings/title
     )
     usable_height = max(300, available_height - above_height)
     # Fixed dropdown height for all tiers
@@ -472,6 +491,19 @@ def calculate_requirements():
     p2_totals = {}  # Store total P1 materials for each individual P2 item
     p1_totals = {}  # Store total for P1 items
 
+    # --- Helper to accumulate P0 requirements for P1 items ---
+    def accumulate_p0(item_name, qty_needed, p0_accum):
+        """Recursively accumulate P0 requirements for a given item and quantity."""
+        if item_name in P0_ITEMS:
+            p0_accum[item_name] = p0_accum.get(item_name, 0) + qty_needed
+            return
+        if item_name not in p4_data:
+            return
+        data = p4_data[item_name]
+        multiplier = qty_needed / data.get('output_qty', 1)
+        for input_item, input_qty in data.get('inputs', {}).items():
+            accumulate_p0(input_item, input_qty * multiplier, p0_accum)
+
     def recurse(item_name, qty_needed, parent_item=None):
         """Recursively calculate P1 material requirements."""
         if item_name not in p4_data:
@@ -513,11 +545,17 @@ def calculate_requirements():
                 input_errors.append(item)
             if qty > 0:
                 breakdown_lines.append(f"{item} ({qty} units) requires:")
+                # --- NEW: Accumulate and show P0 breakdown for P1 items ---
+                p0_accum = {}
+                accumulate_p0(item, qty, p0_accum)
+                if p0_accum:
+                    for p0_name, p0_qty in p0_accum.items():
+                        breakdown_lines.append(f"   - {p0_name}: {int(p0_qty)}")
+                else:
+                    breakdown_lines.append("   - No P0 materials found.")
+                # Also keep the old logic for total_p1
                 p1_totals[item] = {}
-                # For P1, just show the quantity (no further breakdown)
-                p1_totals[item][item] = qty
-                total_p1[item] = total_p1.get(item, 0) + qty
-                breakdown_lines.append(f"   - {item}: {qty}")
+                recurse(item, qty, parent_item=item)
             else:
                 breakdown_lines.append(f"{item} (0 units) requires no P1 materials.")
 
