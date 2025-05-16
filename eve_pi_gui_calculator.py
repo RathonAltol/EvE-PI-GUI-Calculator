@@ -172,10 +172,23 @@ def update_scroll_region(canvas, inner_frame):
 
 # Enable mouse wheel scrolling for P2, P3, and P4 dropdowns
 def bind_mouse_wheel(canvas):
-    def on_mouse_wheel(event):
-        canvas.yview_scroll(-1 * int(event.delta / 120), "units")
-    canvas.bind("<Enter>", lambda _: canvas.bind_all("<MouseWheel>", on_mouse_wheel))
-    canvas.bind("<Leave>", lambda _: canvas.unbind_all("<MouseWheel>"))
+    def _on_mousewheel(event):
+        # Windows and MacOS
+        if event.num == 4 or event.delta > 0:
+            canvas.yview_scroll(-1, "units")
+        elif event.num == 5 or event.delta < 0:
+            canvas.yview_scroll(1, "units")
+    # Windows and MacOS
+    canvas.bind("<Enter>", lambda _: (
+        canvas.bind_all("<MouseWheel>", _on_mousewheel),
+        canvas.bind_all("<Button-4>", _on_mousewheel),
+        canvas.bind_all("<Button-5>", _on_mousewheel)
+    ))
+    canvas.bind("<Leave>", lambda _: (
+        canvas.unbind_all("<MouseWheel>"),
+        canvas.unbind_all("<Button-4>"),
+        canvas.unbind_all("<Button-5>")
+    ))
 
 bind_mouse_wheel(p4_canvas)
 bind_mouse_wheel(p2_canvas)
