@@ -128,7 +128,8 @@ except FileNotFoundError:
 
 root = tk.Tk()
 root.title("EVE PI P4 → P1 Calculator")
-root.geometry(f"{DEFAULT_WIN_WIDTH}x{DEFAULT_WIN_HEIGHT}")  # Set default window size (width increased by 1%)
+root.geometry(f"{DEFAULT_WIN_WIDTH}x{DEFAULT_WIN_HEIGHT}")
+root.configure(bg="black")  # Set main window background to black
 
 selected_p4 = {item: tk.BooleanVar(value=False) for item in P4_ITEMS}
 selected_p2 = {item: tk.BooleanVar(value=False) for item in P2_ITEMS}
@@ -176,36 +177,39 @@ for item in P1_ITEMS:
 
 # ----------------------- UI COMPONENTS -----------------------
 
-dropdown_frame = tk.Frame(root)
+dropdown_frame = tk.Frame(root, bg="black")
 dropdown_frame.pack(padx=10, pady=10, anchor='n')
 
-button_container = tk.Frame(dropdown_frame)  # Container to center all buttons
+button_container = tk.Frame(dropdown_frame, bg="black")
 button_container.pack(anchor='center', pady=10)
 
 # --- Main content frame to hold dropdown only (output area will be below button_frame) ---
-main_content_frame = tk.Frame(root)
+main_content_frame = tk.Frame(root, bg="black")
 main_content_frame.pack(padx=10, pady=10, anchor='center', fill='x', expand=False)
 
 # Move dropdown menus into main_content_frame
-dropdown_menu = tk.Frame(main_content_frame, relief=tk.RAISED, borderwidth=1, width=600)
+dropdown_menu = tk.Frame(main_content_frame, relief=tk.RAISED, borderwidth=1, width=600, bg="black")
 dropdown_menu.pack_propagate(True)
-p2_dropdown_menu = tk.Frame(main_content_frame, relief=tk.RAISED, borderwidth=1, width=600)
+p2_dropdown_menu = tk.Frame(main_content_frame, relief=tk.RAISED, borderwidth=1, width=600, bg="black")
 p2_dropdown_menu.pack_propagate(True)
-p3_dropdown_menu = tk.Frame(main_content_frame, relief=tk.RAISED, borderwidth=1, width=600)
+p3_dropdown_menu = tk.Frame(main_content_frame, relief=tk.RAISED, borderwidth=1, width=600, bg="black")
 p3_dropdown_menu.pack_propagate(True)
-p1_dropdown_menu = tk.Frame(main_content_frame, relief=tk.RAISED, borderwidth=1, width=600)
+p1_dropdown_menu = tk.Frame(main_content_frame, relief=tk.RAISED, borderwidth=1, width=600, bg="black")
 p1_dropdown_menu.pack_propagate(True)
 
 # Output area is now below the button_frame, not inside main_content_frame
-button_frame = tk.Frame(root)
-button_frame.pack(padx=10, pady=5, anchor='center')  # Always pack ONCE, directly above output_frame
+button_frame = tk.Frame(root, bg="black")
+button_frame.pack(padx=10, pady=5, anchor='center')
 
-output_frame = tk.Frame(root)
+output_frame = tk.Frame(root, bg="black")
 output_frame.pack(padx=0, pady=0, anchor='center', fill='both', expand=True)
 
-input_frame = tk.Frame(root)  # input_frame stays outside, as before
+input_frame = tk.Frame(root, bg="black")  # input_frame stays outside, as before
 
-output_area = scrolledtext.ScrolledText(output_frame, wrap=tk.WORD, width=60, height=int(10 * 0.9))  # Decreased default height by 10%
+output_area = scrolledtext.ScrolledText(
+    output_frame, wrap=tk.WORD, width=60, height=int(10 * 0.9),
+    background="black", foreground="white", insertbackground="white"
+)
 output_area.pack(padx=10, pady=10, fill='both', expand=True)
 output_area.insert(tk.END, "Enter quantities and click Calculate to see required P1 materials.\n")
 
@@ -270,18 +274,18 @@ def build_input_fields():
     # Add input fields for selected P4 items
     for item, is_selected in selected_p4.items():
         if is_selected.get():
-            row = tk.Frame(input_frame)
+            row = tk.Frame(input_frame, bg="black")
             row.pack(fill='x', pady=2)
 
             img = p4_images[item]
             if img:
-                tk.Label(row, image=img).pack(side='left', padx=5)
+                tk.Label(row, image=img, bg="black").pack(side='left', padx=5)
             else:
-                tk.Label(row, text="[No Image]", width=10).pack(side='left', padx=5)
+                tk.Label(row, text="[No Image]", width=10, bg="black", fg="white").pack(side='left', padx=5)
 
-            tk.Label(row, text=item, width=30, anchor='w').pack(side='left')
+            tk.Label(row, text=item, width=30, anchor='w', bg="black", fg="white").pack(side='left')
 
-            qty_entry = tk.Entry(row, width=6)
+            qty_entry = tk.Entry(row, width=6, bg="black", fg="white", insertbackground="white")
             qty_entry.insert(0, "0")
             qty_entry.pack(side='left', padx=5)
             entries[item] = qty_entry  # Add the entry widget to the dictionary
@@ -289,18 +293,18 @@ def build_input_fields():
     # Add input fields for selected P2 items
     for item, is_selected in selected_p2.items():
         if is_selected.get():
-            row = tk.Frame(input_frame)
+            row = tk.Frame(input_frame, bg="black")
             row.pack(fill='x', pady=2)
 
             img = p2_images[item]
             if img:
-                tk.Label(row, image=img).pack(side='left', padx=5)
+                tk.Label(row, image=img, bg="black").pack(side='left', padx=5)
             else:
-                tk.Label(row, text="[No Image]", width=10).pack(side='left', padx=5)
+                tk.Label(row, text="[No Image]", width=10, bg="black", fg="white").pack(side='left', padx=5)
 
-            tk.Label(row, text=item, width=30, anchor='w').pack(side='left')
+            tk.Label(row, text=item, width=30, anchor='w', bg="black", fg="white").pack(side='left')
 
-            qty_entry = tk.Entry(row, width=6)
+            qty_entry = tk.Entry(row, width=6, bg="black", fg="white", insertbackground="white")
             qty_entry.insert(0, "0")
             qty_entry.pack(side='left', padx=5)
             entries[item] = qty_entry  # Add the entry widget to the dictionary
@@ -308,18 +312,18 @@ def build_input_fields():
     # Add input fields for selected P3 items
     for item, is_selected in selected_p3.items():
         if is_selected.get():
-            row = tk.Frame(input_frame)
+            row = tk.Frame(input_frame, bg="black")
             row.pack(fill='x', pady=2)
 
             img = p3_images[item]
             if img:
-                tk.Label(row, image=img).pack(side='left', padx=5)
+                tk.Label(row, image=img, bg="black").pack(side='left', padx=5)
             else:
-                tk.Label(row, text="[No Image]", width=10).pack(side='left', padx=5)
+                tk.Label(row, text="[No Image]", width=10, bg="black", fg="white").pack(side='left', padx=5)
 
-            tk.Label(row, text=item, width=30, anchor='w').pack(side='left')
+            tk.Label(row, text=item, width=30, anchor='w', bg="black", fg="white").pack(side='left')
 
-            qty_entry = tk.Entry(row, width=6)
+            qty_entry = tk.Entry(row, width=6, bg="black", fg="white", insertbackground="white")
             qty_entry.insert(0, "0")
             qty_entry.pack(side='left', padx=5)
             entries[item] = qty_entry  # Add the entry widget to the dictionary
@@ -327,18 +331,18 @@ def build_input_fields():
     # Add input fields for selected P1 items
     for item, is_selected in selected_p1.items():
         if is_selected.get():
-            row = tk.Frame(input_frame)
+            row = tk.Frame(input_frame, bg="black")
             row.pack(fill='x', pady=2)
 
             img = p1_images[item]
             if img:
-                tk.Label(row, image=img).pack(side='left', padx=5)
+                tk.Label(row, image=img, bg="black").pack(side='left', padx=5)
             else:
-                tk.Label(row, text="[No Image]", width=10).pack(side='left', padx=5)
+                tk.Label(row, text="[No Image]", width=10, bg="black", fg="white").pack(side='left', padx=5)
 
-            tk.Label(row, text=item, width=30, anchor='w').pack(side='left')
+            tk.Label(row, text=item, width=30, anchor='w', bg="black", fg="white").pack(side='left')
 
-            qty_entry = tk.Entry(row, width=6)
+            qty_entry = tk.Entry(row, width=6, bg="black", fg="white", insertbackground="white")
             qty_entry.insert(0, "0")
             qty_entry.pack(side='left', padx=5)
             entries[item] = qty_entry  # Add the entry widget to the dictionary
@@ -535,7 +539,7 @@ def calculate_requirements():
     else:
         tier_label = "Items Selected"
 
-    # Calculate for P1 items
+    # --- P1 output: match structure/layout of other tiers ---
     for item, is_selected in selected_p1.items():
         if is_selected.get() and item in entries:
             try:
@@ -545,7 +549,6 @@ def calculate_requirements():
                 input_errors.append(item)
             if qty > 0:
                 breakdown_lines.append(f"{item} ({qty} units) requires:")
-                # --- NEW: Accumulate and show P0 breakdown for P1 items ---
                 p0_accum = {}
                 accumulate_p0(item, qty, p0_accum)
                 if p0_accum:
@@ -553,11 +556,10 @@ def calculate_requirements():
                         breakdown_lines.append(f"   - {p0_name}: {int(p0_qty)}")
                 else:
                     breakdown_lines.append("   - No P0 materials found.")
-                # Also keep the old logic for total_p1
                 p1_totals[item] = {}
                 recurse(item, qty, parent_item=item)
             else:
-                breakdown_lines.append(f"{item} (0 units) requires no P1 materials.")
+                breakdown_lines.append(f"{item} (0 units) requires no P0 materials.")
 
     # Calculate for P4 items
     for item, is_selected in selected_p4.items():
@@ -613,26 +615,34 @@ def calculate_requirements():
             else:
                 breakdown_lines.append(f"{item} (0 units) requires no P1 materials.")
 
-    # Prepare totals for P1 materials
-    if total_p1:
-        for name, amt in total_p1.items():
-            total_lines.append(f" - {name}: {int(amt)}")
-    else:
-        total_lines.append(" - None (no items selected).")
+    # Prepare totals for P1 materials (skip for P1 tier for consistency)
+    if not p1_dropdown_menu.winfo_ismapped():
+        if total_p1:
+            for name, amt in total_p1.items():
+                total_lines.append(f" - {name}: {int(amt)}")
+        else:
+            total_lines.append(" - None (no items selected).")
 
     # Handle input errors
     if input_errors:
         breakdown_lines.append("\nInvalid inputs for: " + ", ".join(input_errors))
 
-    # Combine breakdown and totals into two columns
-    max_lines = max(len(breakdown_lines), len(total_lines))
-    breakdown_lines += [""] * (max_lines - len(breakdown_lines))  # Pad shorter column
-    total_lines += [""] * (max_lines - len(total_lines))  # Pad shorter column
+    # Combine breakdown and totals into two columns (skip totals for P1 tier)
+    if p1_dropdown_menu.winfo_ismapped():
+        # Only show breakdown_lines for P1, no totals column
+        output_area.insert(tk.END, f"{tier_label.center(80)}\n")
+        output_area.insert(tk.END, "-" * 80 + "\n")
+        for breakdown in breakdown_lines:
+            output_area.insert(tk.END, f"{breakdown}\n")
+    else:
+        max_lines = max(len(breakdown_lines), len(total_lines))
+        breakdown_lines += [""] * (max_lines - len(breakdown_lines))  # Pad shorter column
+        total_lines += [""] * (max_lines - len(total_lines))  # Pad shorter column
 
-    output_area.insert(tk.END, f"{tier_label:<50}{'Total P1 materials needed:':<30}\n")
-    output_area.insert(tk.END, "-" * 80 + "\n")
-    for breakdown, total in zip(breakdown_lines, total_lines):
-        output_area.insert(tk.END, f"{breakdown:<50}{total:<30}\n")
+        output_area.insert(tk.END, f"{tier_label:<50}{'Total P1 materials needed:':<30}\n")
+        output_area.insert(tk.END, "-" * 80 + "\n")
+        for breakdown, total in zip(breakdown_lines, total_lines):
+            output_area.insert(tk.END, f"{breakdown:<50}{total:<30}\n")
     output_area.edit_modified(True)  # Trigger <<Modified>> event
 
     # Dynamically resize window so output_area reaches bottom of screen, but keep buttons visible
@@ -695,22 +705,22 @@ def clear_inputs():
     # Do NOT repack button_frame here
 
 def create_dropdown_row(parent_frame, item, img, selected_var, entries_dict):
-    row = tk.Frame(parent_frame)
+    row = tk.Frame(parent_frame, bg="black")
     row.pack(fill='x', expand=True, pady=2)
     row.grid_columnconfigure(2, weight=0)  # item name
     row.grid_columnconfigure(3, weight=1)  # spacer
     row.grid_columnconfigure(4, weight=0)  # entry
 
     if img:
-        tk.Label(row, image=img).grid(row=0, column=0, padx=(0, 5), sticky='w')
+        tk.Label(row, image=img, bg="black").grid(row=0, column=0, padx=(0, 5), sticky='w')
     else:
-        tk.Label(row, text="[No Image]", width=10).grid(row=0, column=0, padx=(0, 5), sticky='w')
+        tk.Label(row, text="[No Image]", width=10, bg="black", fg="white").grid(row=0, column=0, padx=(0, 5), sticky='w')
 
-    cb = tk.Checkbutton(row, variable=selected_var)
+    cb = tk.Checkbutton(row, variable=selected_var, bg="black", fg="white", selectcolor="black", activebackground="black", activeforeground="white")
     cb.grid(row=0, column=1, padx=(0, 5), sticky='w')
-    tk.Label(row, text=item, anchor='w').grid(row=0, column=2, sticky='w')
+    tk.Label(row, text=item, anchor='w', bg="black", fg="white").grid(row=0, column=2, sticky='w')
     # Flexible spacer
-    spacer = tk.Frame(row)
+    spacer = tk.Frame(row, bg="black")
     spacer.grid(row=0, column=3, sticky='ew')
     # Make the row expand horizontally
     row.pack_propagate(False)
@@ -727,7 +737,7 @@ def create_dropdown_row(parent_frame, item, img, selected_var, entries_dict):
                 del entries_dict[item]
         # Add entry if checked and row still exists
         if selected_var.get() and row.winfo_exists():
-            qty_entry = tk.Entry(row, width=6, justify='right')
+            qty_entry = tk.Entry(row, width=6, justify='right', bg="black", fg="white", insertbackground="white")
             qty_entry.insert(0, "0")
             qty_entry.grid(row=0, column=4, padx=(5, 0), sticky='e')
             qty_entry_ref[0] = qty_entry
@@ -791,45 +801,45 @@ def _show_dropdown(dropdown_menu, inner_frame, canvas, items, images, selected_d
     dropdown_menu.pack(padx=10, pady=10, anchor='center')
 
 # P4 dropdown scrollable frame
-p4_canvas = tk.Canvas(dropdown_menu, width=DROPDOWN_WIDTH, height=DROPDOWN_HEIGHT)
-p4_scrollbar = tk.Scrollbar(dropdown_menu, orient="vertical", command=p4_canvas.yview)
+p4_canvas = tk.Canvas(dropdown_menu, width=DROPDOWN_WIDTH, height=DROPDOWN_HEIGHT, bg="black", highlightthickness=0)
+p4_scrollbar = tk.Scrollbar(dropdown_menu, orient="vertical", command=p4_canvas.yview, bg="black", troughcolor="black")
 p4_canvas.configure(yscrollcommand=p4_scrollbar.set)
 p4_canvas.pack(side="left", fill="both", expand=True)
 p4_scrollbar.pack(side="right", fill="y")
-p4_inner_frame = tk.Frame(p4_canvas)
+p4_inner_frame = tk.Frame(p4_canvas, bg="black")
 p4_canvas.create_window((0, 0), window=p4_inner_frame, anchor="nw")
 p4_inner_frame.bind("<Configure>", lambda e: update_scroll_region(p4_canvas, p4_inner_frame))
 _bind_mousewheel(p4_canvas, p4_canvas)
 
 # P2 dropdown scrollable frame
-p2_canvas = tk.Canvas(p2_dropdown_menu, width=DROPDOWN_WIDTH, height=DROPDOWN_HEIGHT)
-p2_scrollbar = tk.Scrollbar(p2_dropdown_menu, orient="vertical", command=p2_canvas.yview)
+p2_canvas = tk.Canvas(p2_dropdown_menu, width=DROPDOWN_WIDTH, height=DROPDOWN_HEIGHT, bg="black", highlightthickness=0)
+p2_scrollbar = tk.Scrollbar(p2_dropdown_menu, orient="vertical", command=p2_canvas.yview, bg="black", troughcolor="black")
 p2_canvas.configure(yscrollcommand=p2_scrollbar.set)
 p2_canvas.pack(side="left", fill="both", expand=True)
 p2_scrollbar.pack(side="right", fill="y")
-p2_inner_frame = tk.Frame(p2_canvas)
+p2_inner_frame = tk.Frame(p2_canvas, bg="black")
 p2_canvas.create_window((0, 0), window=p2_inner_frame, anchor="nw")
 p2_inner_frame.bind("<Configure>", lambda e: update_scroll_region(p2_canvas, p2_inner_frame))
 _bind_mousewheel(p2_canvas, p2_canvas)
 
 # P3 dropdown scrollable frame
-p3_canvas = tk.Canvas(p3_dropdown_menu, width=DROPDOWN_WIDTH, height=DROPDOWN_HEIGHT)
-p3_scrollbar = tk.Scrollbar(p3_dropdown_menu, orient="vertical", command=p3_canvas.yview)
+p3_canvas = tk.Canvas(p3_dropdown_menu, width=DROPDOWN_WIDTH, height=DROPDOWN_HEIGHT, bg="black", highlightthickness=0)
+p3_scrollbar = tk.Scrollbar(p3_dropdown_menu, orient="vertical", command=p3_canvas.yview, bg="black", troughcolor="black")
 p3_canvas.configure(yscrollcommand=p3_scrollbar.set)
 p3_canvas.pack(side="left", fill="both", expand=True)
 p3_scrollbar.pack(side="right", fill="y")
-p3_inner_frame = tk.Frame(p3_canvas)
+p3_inner_frame = tk.Frame(p3_canvas, bg="black")
 p3_canvas.create_window((0, 0), window=p3_inner_frame, anchor="nw")
 p3_inner_frame.bind("<Configure>", lambda e: update_scroll_region(p3_canvas, p3_inner_frame))
 _bind_mousewheel(p3_canvas, p3_canvas)
 
 # P1 dropdown scrollable frame
-p1_canvas = tk.Canvas(p1_dropdown_menu, width=DROPDOWN_WIDTH, height=DROPDOWN_HEIGHT)
-p1_scrollbar = tk.Scrollbar(p1_dropdown_menu, orient="vertical", command=p1_canvas.yview)
+p1_canvas = tk.Canvas(p1_dropdown_menu, width=DROPDOWN_WIDTH, height=DROPDOWN_HEIGHT, bg="black", highlightthickness=0)
+p1_scrollbar = tk.Scrollbar(p1_dropdown_menu, orient="vertical", command=p1_canvas.yview, bg="black", troughcolor="black")
 p1_canvas.configure(yscrollcommand=p1_scrollbar.set)
 p1_canvas.pack(side="left", fill="both", expand=True)
 p1_scrollbar.pack(side="right", fill="y")
-p1_inner_frame = tk.Frame(p1_canvas)
+p1_inner_frame = tk.Frame(p1_canvas, bg="black")
 p1_canvas.create_window((0, 0), window=p1_inner_frame, anchor="nw")
 p1_inner_frame.bind("<Configure>", lambda e: update_scroll_region(p1_canvas, p1_inner_frame))
 _bind_mousewheel(p1_canvas, p1_canvas)
@@ -865,8 +875,8 @@ update_scroll_region(p3_canvas, p3_inner_frame)
 populate_dropdown(p1_inner_frame, P1_ITEMS, p1_images, selected_p1, entries)
 update_scroll_region(p1_canvas, p1_inner_frame)
 
-tk.Button(button_frame, text="Calculate", command=calculate_requirements).pack(side='left', padx=5)
-tk.Button(button_frame, text="Clear", command=clear_inputs).pack(side='left', padx=5)
+tk.Button(button_frame, text="Calculate", command=calculate_requirements, bg="black", fg="black", activebackground="black", activeforeground="black").pack(side='left', padx=5)
+tk.Button(button_frame, text="Clear", command=clear_inputs, bg="black", fg="black", activebackground="black", activeforeground="black").pack(side='left', padx=5)
 
 # Bind the Enter key to the calculate_requirements function
 root.bind('<Return>', lambda event: calculate_requirements())
@@ -876,11 +886,12 @@ tk.Button(
     button_container,
     text="Select P1 Items",
     command=toggle_p1_dropdown,
-    relief='raised'
+    relief='raised',
+    bg="black", fg="black", activebackground="black", activeforeground="black"
 ).pack(side='left', padx=5)
-tk.Button(button_container, text="Select P2 Items", command=toggle_p2_dropdown).pack(side='left', padx=5)
-tk.Button(button_container, text="Select P3 Items", command=toggle_p3_dropdown).pack(side='left', padx=5)
-tk.Button(button_container, text="Select P4 Items", command=toggle_dropdown).pack(side='left', padx=5)
+tk.Button(button_container, text="Select P2 Items", command=toggle_p2_dropdown, bg="black", fg="black", activebackground="black", activeforeground="black").pack(side='left', padx=5)
+tk.Button(button_container, text="Select P3 Items", command=toggle_p3_dropdown, bg="black", fg="black", activebackground="black", activeforeground="black").pack(side='left', padx=5)
+tk.Button(button_container, text="Select P4 Items", command=toggle_dropdown, bg="black", fg="black", activebackground="black", activeforeground="black").pack(side='left', padx=5)
 
 # ----------------------- MAIN LOOP -----------------------
 root.mainloop()
