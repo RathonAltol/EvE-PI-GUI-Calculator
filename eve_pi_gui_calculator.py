@@ -1,3 +1,4 @@
+
 import json
 import os
 import tkinter as tk
@@ -100,9 +101,6 @@ class CalculationScreen(tk.Frame):
         self.output_frame.pack(padx=20, pady=(0, 10), fill="both", expand=True)
         self.output_display = scrolledtext.ScrolledText(self.output_frame, wrap=tk.WORD, height=8)
         self.output_display.pack(fill="both", expand=True)
-
-        # Add Return to Welcome button
-        tk.Button(self, text="Return to Welcome", command=lambda: controller.show_frame("WelcomeScreen")).pack(pady=(0, 10))
 
     def load_tier(self, tier):
         self.tier_label.config(text=f"Current Tier: {tier}")
@@ -227,8 +225,6 @@ class PIApp(tk.Tk):
     def show_frame(self, name):
         frame = self.frames[name]
         frame.tkraise()
-        self.update_idletasks()
-        self.geometry("")  # Auto-resize window to fit content
 
 if __name__ == "__main__":
     app = PIApp()
