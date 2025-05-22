@@ -1,0 +1,37 @@
+{
+  "Construction Blocks": {
+    "output_qty": 3.33,
+    "inputs": {
+      "@P1:Toxic Metals": 26.67,
+      "@P1:Reactive Metals": 26.67
+    }
+  },
+  "Livestock": {
+    "output_qty": 3.33,
+    "inputs": {
+      "@P1:Biofuels": 26.67,
+      "@P1:Proteins": 26.67
+    }
+  },
+  "Nanites": {
+    "output_qty": 3.33,
+    "inputs": {
+      "@P1:Reactive Metals": 26.67,
+      "@P1:Bacteria": 26.67
+    }
+  },
+  "Microfiber Shielding": {
+    "output_qty": 3.33,
+    "inputs": {
+      "@P1:Silicon": 26.67,
+      "@P1:Industrial Fibers": 26.67
+    }
+  },
+  "Supertensile Plastics": {
+    "output_qty": 3.33,
+    "inputs": {
+      "@P1:Oxygen": 26.67,
+      "@P1:Biomass": 26.67
+    }
+  }
+}

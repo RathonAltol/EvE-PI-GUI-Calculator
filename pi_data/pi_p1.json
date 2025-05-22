@@ -1,0 +1,86 @@
+{
+  "Toxic Metals": {
+    "output_qty": 26.67,
+    "inputs": {
+      "Heavy Metals": 4000
+    }
+  },
+  "Reactive Metals": {
+    "output_qty": 26.67,
+    "inputs": {
+      "Base Metals": 4000
+    }
+  },
+  "Biofuels": {
+    "output_qty": 26.67,
+    "inputs": {
+      "Carbon Compounds": 4000
+    }
+  },
+  "Proteins": {
+    "output_qty": 26.67,
+    "inputs": {
+      "Complex Organisms": 4000
+    }
+  },
+  "Bacteria": {
+    "output_qty": 26.67,
+    "inputs": {
+      "Micro Organisms": 4000
+    }
+  },
+  "Industrial Fibers": {
+    "output_qty": 26.67,
+    "inputs": {
+      "Autotrophs": 4000
+    }
+  },
+  "Precious Metals": {
+    "output_qty": 26.67,
+    "inputs": {
+      "Noble Metals": 4000
+    }
+  },
+  "Silicon": {
+    "output_qty": 26.67,
+    "inputs": {
+      "Non-CS Crystals": 4000
+    }
+  },
+  "Oxidizing Compound": {
+    "output_qty": 26.67,
+    "inputs": {
+      "Reactive Gas": 4000
+    }
+  },
+  "Oxygen": {
+    "output_qty": 26.67,
+    "inputs": {
+      "Aqueous Liquids": 4000
+    }
+  },
+  "Plasmoids": {
+    "output_qty": 26.67,
+    "inputs": {
+      "Suspended Plasma": 4000
+    }
+  },
+  "Water": {
+    "output_qty": 26.67,
+    "inputs": {
+      "Aqueous Liquids": 4000
+    }
+  },
+  "Biomass": {
+    "output_qty": 26.67,
+    "inputs": {
+      "Autotrophs": 4000
+    }
+  },
+  "Chiral Structures": {
+    "output_qty": 26.67,
+    "inputs": {
+      "Felsic Magma": 4000
+    }
+  }
+}
