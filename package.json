@@ -1,0 +1,21 @@
+{
+  "name": "eve-pi-gui-calculator",
+  "version": "1.0.0",
+  "description": "EVE Online PI P4 to P1 Calculator - JavaScript/React version",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "keywords": ["eve", "pi", "calculator", "react", "gui"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "^5.0.1"
+  },
+  "devDependencies": {}
+}
