@@ -1,1115 +1,383 @@
 {
-  "Biotech Research Reports": {
-    "output_qty": 1,
-    "inputs": {
-      "Construction Blocks": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Toxic Metals": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Heavy Metals": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Reactive Metals": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Base Metals": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      },
-      "Livestock": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Biofuels": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Carbon Compounds": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Proteins": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Complex Organisms": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      },
-      "Nanites": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Reactive Metals": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Base Metals": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Bacteria": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Micro Organisms": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
+  "PI_DATA": {
+    "Broadcast Node": {
+      "inputs": {
+        "Data Chip": 6,
+        "Neocom": 6,
+        "High-Tech Transmitter": 6
+      }
+    },
+    "Data Chip": {
+      "inputs": {
+        "Supertensile Plastics": 10,
+        "Microfiber Shielding": 10
+      }
+    },
+    "Supertensile Plastics": {
+      "inputs": {
+        "Oxygen": 40,
+        "Biomass": 40
+      }
+    },
+    "Oxygen": {
+      "inputs": {
+        "Noble Gas": 3000
+      }
+    },
+    "Biomass": {
+      "inputs": {
+        "Plantic Colonies": 3000
+      }
+    },
+    "Microfiber Shielding": {
+      "inputs": {
+        "Silicon": 40,
+        "Industrial Fibers": 40
+      }
+    },
+    "Silicon": {
+      "inputs": {
+        "Felsic Magma": 3000
+      }
+    },
+    "Neocom": {
+      "inputs": {
+        "Biocells": 10,
+        "Silicate Glass": 10
+      }
+    },
+    "Biocells": {
+      "inputs": {
+        "Biofuels": 40,
+        "Precious Metals": 40
+      }
+    },
+    "Biofuels": {
+      "inputs": {
+        "Carbon Compounds": 3000
+      }
+    },
+    "Precious Metals": {
+      "inputs": {
+        "Noble Metals": 3000
+      }
+    },
+    "Silicate Glass": {
+      "inputs": {
+        "Oxidizing Compound": 40,
+        "Silicon": 40
+      }
+    },
+    "Oxidizing Compound": {
+      "inputs": {
+        "Reactive Gas": 3000
+      }
+    },
+    "High-Tech Transmitter": {
+      "inputs": {
+        "Transmitter": 10,
+        "Polyaramids": 10
+      }
+    },
+    "Transmitter": {
+      "inputs": {
+        "Chiral Structures": 40,
+        "Plasmoids": 40
+      }
+    },
+    "Chiral Structures": {
+      "inputs": {
+        "Non-CS Crystals": 3000
+      }
+    },
+    "Plasmoids": {
+      "inputs": {
+        "Suspended Plasma": 3000
+      }
+    },
+    "Polyaramids": {
+      "inputs": {
+        "Oxidizing Compound": 40,
+        "Industrial Fibers": 40
+      }
+    },
+    "Industrial Fibers": {
+      "inputs": {
+        "Autotrophs": 3000
+      }
+    },
+    "Integrity Response Drones": {
+      "inputs": {
+        "Gel-Matrix Biopaste": 6,
+        "Planetary Vehicles": 6,
+        "Hazmat Detection Systems": 6
+      }
+    },
+    "Gel-Matrix Biopaste": {
+      "inputs": {
+        "Superconductors": 10,
+        "Biocells": 10,
+        "Oxides": 10
+      }
+    },
+    "Superconductors": {
+      "inputs": {
+        "Plasmoids": 40,
+        "Water": 40
+      }
+    },
+    "Planetary Vehicles": {
+      "inputs": {
+        "Supertensile Plastics": 10,
+        "Miniature Electronics": 10,
+        "Mechanical Parts": 10
+      }
+    },
+    "Miniature Electronics": {
+      "inputs": {
+        "Silicon": 40,
+        "Chiral Structures": 40
+      }
+    },
+    "Mechanical Parts": {
+      "inputs": {
+        "Reactive Metals": 40,
+        "Precious Metals": 40
+      }
+    },
+    "Hazmat Detection Systems": {
+      "inputs": {
+        "Transmitter": 10,
+        "Viral Agent": 10,
+        "Polytextiles": 10
+      }
+    },
+    "Viral Agent": {
+      "inputs": {
+        "Bacteria": 40,
+        "Biomass": 40
+      }
+    },
+    "Polytextiles": {
+      "inputs": {
+        "Biofuels": 40,
+        "Industrial Fibers": 40
+      }
+    },
+    "Water": {
+      "inputs": {
+        "Aqueous Liquids": 3000
+      }
+    },
+    "Oxides": {
+      "inputs": {
+        "Oxidizing Compound": 40
+      }
+    },
+    "Reactive Metals": {
+      "inputs": {
+        "Base Metals": 3000
+      }
+    },
+    "Bacteria": {
+      "inputs": {
+        "Microorganisms": 3000
+      }
+    },
+    "Biotech Research Reports": {
+      "inputs": {
+        "Test Cultures": 6,
+        "Nanite Repair Paste": 3,
+        "Gel-Matrix Biopaste": 3
+      }
+    },
+    "Camera Drones": {
+      "inputs": {
+        "Guidance Systems": 6,
+        "Miniature Electronics": 6,
+        "Transmitter": 6
+      }
+    },
+    "Cryoprotectant Solution": {
+      "inputs": {
+        "Gel-Matrix Biopaste": 6,
+        "Viral Agent": 6,
+        "Livestock": 6
+      }
+    },
+    "Guidance Systems": {
+      "inputs": {
+        "Transmitter": 6,
+        "Microfiber Shielding": 6,
+        "Miniature Electronics": 6
+      }
+    },
+    "Hermetic Membranes": {
+      "inputs": {
+        "Industrial Fibers": 6,
+        "Synthetic Oil": 6,
+        "Coolant": 6
+      }
+    },
+    "Industrial Explosives": {
+      "inputs": {
+        "Oxidizing Compound": 6,
+        "Toxic Metals": 6,
+        "Coolant": 6
+      }
+    },
+    "Nuclear Reactors": {
+      "inputs": {
+        "Enriched Uranium": 6,
+        "Mechanical Parts": 6,
+        "Miniature Electronics": 6
+      }
+    },
+    "Robotics": {
+      "inputs": {
+        "Mechanical Parts": 6,
+        "Consumer Electronics": 6,
+        "Oxygen": 6
+      }
+    },
+    "Smartfab Units": {
+      "inputs": {
+        "Synthetic Synapses": 6,
+        "Industrial Fibers": 6,
+        "Superconductors": 6
+      }
+    },
+    "Supercomputers": {
+      "inputs": {
+        "Ukomi Superconductors": 6,
+        "Transcranial Microcontrollers": 6,
+        "Neocoms": 3
+      }
+    },
+    "Synthetic Synapses": {
+      "inputs": {
+        "Transcranial Microcontrollers": 6,
+        "Superconductors": 6,
+        "Biocells": 6
+      }
+    },
+    "Ukomi Superconductors": {
+      "inputs": {
+        "Superconductors": 6,
+        "Biocells": 6,
+        "Oxidizing Compound": 6
+      }
+    },
+    "Vaccines": {
+      "inputs": {
+        "Test Cultures": 6,
+        "Livestock": 6,
+        "Gel-Matrix Biopaste": 3
       }
     }
   },
-  "Camera Drones": {
-    "output_qty": 1,
-    "inputs": {
-      "Rocket Fuel": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Electrolytes": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Ionic Solutions": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Plasmoids": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Suspended Plasma": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      },
-      "Silicate Glass": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Silicon": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Non-CS Crystals": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Oxidizing Compound": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Reactive Gas": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      }
-    }
+  "TIERS": {
+    "P4": [
+      "Broadcast Node",
+      "Integrity Response Drones",
+      "Nano-Factory",
+      "Organic Mortar Applicators",
+      "Recursive Computing Module",
+      "Self-Harmonizing Power Core",
+      "Sterile Conduits",
+      "Wetware Mainframe"
+    ],
+    "P3": [
+      "Biotech Research Reports",
+      "Camera Drones",
+      "Condensates",
+      "Cryoprotectant Solution",
+      "Data Chip",
+      "Gel-Matrix Biopaste",
+      "Guidance Systems",
+      "Hazmat Detection Systems",
+      "Hermetic Membranes",
+      "High-Tech Transmitter",
+      "Industrial Explosives",
+      "Neocom",
+      "Nuclear Reactors",
+      "Planetary Vehicles",
+      "Robotics",
+      "Smartfab Units",
+      "Supercomputers",
+      "Synthetic Synapses",
+      "Transcranial Microcontrollers",
+      "Ukomi Superconductors",
+      "Vaccines"
+    ],
+    "P2": [
+      "Biocells",
+      "Construction Blocks",
+      "Consumer Electronics",
+      "Coolant",
+      "Enriched Uranium",
+      "Fertilizer",
+      "Genetically Enhanced Livestock",
+      "Livestock",
+      "Mechanical Parts",
+      "Microfiber Shielding",
+      "Miniature Electronics",
+      "Nanites",
+      "Oxides",
+      "Polyaramids",
+      "Polytextiles",
+      "Rocket Fuel",
+      "Silicate Glass",
+      "Superconductors",
+      "Supertensile Plastics",
+      "Synthetic Oil",
+      "Test Cultures",
+      "Transmitter",
+      "Viral Agent",
+      "Water-Cooled CPU"
+    ],
+    "P1": [
+      "Bacteria",
+      "Biofuels",
+      "Biomass",
+      "Chiral Structures",
+      "Electrolytes",
+      "Industrial Fibers",
+      "Oxidizing Compound",
+      "Oxygen",
+      "Plasmoids",
+      "Precious Metals",
+      "Proteins",
+      "Reactive Metals",
+      "Silicon",
+      "Toxic Metals",
+      "Water"
+    ],
+    "P0": [
+      "Aqueous Liquids",
+      "Autotrophs",
+      "Base Metals",
+      "Carbon Compounds",
+      "Felsic Magma",
+      "Microorganisms",
+      "Noble Gas",
+      "Noble Metals",
+      "Non-CS Crystals",
+      "Plantic Colonies",
+      "Reactive Gas",
+      "Suspended Plasma"
+    ]
   },
-  "Condensates": {
-    "output_qty": 1,
-    "inputs": {
-      "Coolant": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Electrolytes": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Ionic Solutions": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Water": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Aqueous Liquids": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      },
-      "Oxides": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Oxidizing Compound": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Reactive Gas": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Oxygen": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Aqueous Liquids": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      }
-    }
+  "VOLUME_PER_HOUR": {
+    "P1": 7.6,
+    "P2": 3.9,
+    "P3": 9.0,
+    "P4": 50.0
   },
-  "Cryoprotectant Solution": {
-    "output_qty": 1,
-    "inputs": {
-      "Synthetic Oil": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Electrolytes": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Ionic Solutions": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Oxygen": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Aqueous Liquids": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      },
-      "Fertilizer": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Bacteria": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Micro Organisms": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Proteins": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Complex Organisms": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      },
-      "Test Cultures": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Bacteria": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Micro Organisms": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Water": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Aqueous Liquids": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "Data Chips": {
-    "output_qty": 1,
-    "inputs": {
-      "Supertensile Plastics": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Oxygen": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Aqueous Liquids": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Biomass": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Autotrophs": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      },
-      "Microfiber Shielding": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Silicon": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Non-CS Crystals": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Industrial Fibers": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Autotrophs": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "Gel-Matrix Biopaste": {
-    "output_qty": 1,
-    "inputs": {
-      "Superconductors": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Plasmoids": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Suspended Plasma": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Water": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Aqueous Liquids": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      },
-      "Biocells": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Biofuels": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Carbon Compounds": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Precious Metals": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Noble Metals": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      },
-      "Oxides": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Oxidizing Compound": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Reactive Gas": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Oxygen": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Aqueous Liquids": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "Guidance Systems": {
-    "output_qty": 1,
-    "inputs": {
-      "Water-Cooled CPU": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Reactive Metals": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Base Metals": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Water": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Aqueous Liquids": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      },
-      "Transmitter": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Chiral Structures": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Felsic Magma": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Plasmoids": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Suspended Plasma": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "Hazmat Detection Systems": {
-    "output_qty": 1,
-    "inputs": {
-      "Transmitter": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Chiral Structures": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Felsic Magma": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Plasmoids": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Suspended Plasma": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      },
-      "Viral Agent": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Bacteria": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Micro Organisms": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Biomass": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Autotrophs": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      },
-      "Polytextiles": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Biofuels": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Carbon Compounds": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Industrial Fibers": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Autotrophs": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "Hermetic Membranes": {
-    "output_qty": 1,
-    "inputs": {
-      "Polyaramids": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Oxidizing Compound": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Reactive Gas": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Industrial Fibers": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Autotrophs": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      },
-      "Genetically Enhanced Livestock": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Proteins": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Complex Organisms": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Biomass": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Autotrophs": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "High-Tech Transmitters": {
-    "output_qty": 1,
-    "inputs": {
-      "Transmitter": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Chiral Structures": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Felsic Magma": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Plasmoids": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Suspended Plasma": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      },
-      "Polyaramids": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Oxidizing Compound": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Reactive Gas": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Industrial Fibers": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Autotrophs": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "Industrial Explosives": {
-    "output_qty": 1,
-    "inputs": {
-      "Fertilizer": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Bacteria": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Micro Organisms": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Proteins": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Complex Organisms": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      },
-      "Polytextiles": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Biofuels": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Carbon Compounds": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Industrial Fibers": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Autotrophs": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "Neocoms": {
-    "output_qty": 1,
-    "inputs": {
-      "Biocells": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Biofuels": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Carbon Compounds": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Precious Metals": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Noble Metals": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      },
-      "Silicate Glass": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Silicon": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Non-CS Crystals": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Oxidizing Compound": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Reactive Gas": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "Nuclear Reactors": {
-    "output_qty": 1,
-    "inputs": {
-      "Enriched Uranium": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Toxic Metals": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Heavy Metals": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Precious Metals": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Noble Metals": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      },
-      "Microfiber Shielding": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Silicon": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Non-CS Crystals": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Industrial Fibers": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Autotrophs": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "Planetary Vehicles": {
-    "output_qty": 1,
-    "inputs": {
-      "Supertensile Plastics": {
-        "output_qty": 2.0,
-        "inputs": {
-          "Oxygen": {
-            "output_qty": 16.0,
-            "inputs": {
-              "Aqueous Liquids": {
-                "output_qty": 2400.0
-              }
-            }
-          },
-          "Biomass": {
-            "output_qty": 16.0,
-            "inputs": {
-              "Autotrophs": {
-                "output_qty": 2400.0
-              }
-            }
-          }
-        }
-      },
-      "Miniature Electronics": {
-        "output_qty": 2.0,
-        "inputs": {
-          "Silicon": {
-            "output_qty": 16.0,
-            "inputs": {
-              "Non-CS Crystals": {
-                "output_qty": 2400.0
-              }
-            }
-          },
-          "Chiral Structures": {
-            "output_qty": 16.0,
-            "inputs": {
-              "Felsic Magma": {
-                "output_qty": 2400.0
-              }
-            }
-          }
-        }
-      },
-      "Mechanical Parts": {
-        "output_qty": 2.0,
-        "inputs": {
-          "Reactive Metals": {
-            "output_qty": 16.0,
-            "inputs": {
-              "Base Metals": {
-                "output_qty": 2400.0
-              }
-            }
-          },
-          "Precious Metals": {
-            "output_qty": 16.0,
-            "inputs": {
-              "Noble Metals": {
-                "output_qty": 2400.0
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "Robotics": {
-    "output_qty": 1,
-    "inputs": {
-      "Consumer Electronics": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Toxic Metals": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Heavy Metals": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Chiral Structures": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Felsic Magma": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      },
-      "Mechanical Parts": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Reactive Metals": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Base Metals": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Precious Metals": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Noble Metals": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "Smartfab Units": {
-    "output_qty": 1,
-    "inputs": {
-      "Miniature Electronics": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Silicon": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Non-CS Crystals": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Chiral Structures": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Felsic Magma": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      },
-      "Construction Blocks": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Toxic Metals": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Heavy Metals": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Reactive Metals": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Base Metals": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "Supercomputers": {
-    "output_qty": 1,
-    "inputs": {
-      "Water-Cooled CPU": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Reactive Metals": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Base Metals": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Water": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Aqueous Liquids": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      },
-      "Coolant": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Electrolytes": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Ionic Solutions": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Water": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Aqueous Liquids": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      },
-      "Consumer Electronics": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Toxic Metals": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Heavy Metals": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Chiral Structures": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Felsic Magma": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "Synthetic Synapses": {
-    "output_qty": 1,
-    "inputs": {
-      "Supertensile Plastics": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Oxygen": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Aqueous Liquids": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Biomass": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Autotrophs": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      },
-      "Test Cultures": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Bacteria": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Micro Organisms": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Water": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Aqueous Liquids": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "Transcranial Microcontrollers": {
-    "output_qty": 1,
-    "inputs": {
-      "Biocells": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Biofuels": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Carbon Compounds": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Precious Metals": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Noble Metals": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      },
-      "Nanites": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Reactive Metals": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Base Metals": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Bacteria": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Micro Organisms": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "Ukomi Superconductors": {
-    "output_qty": 1,
-    "inputs": {
-      "Superconductors": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Plasmoids": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Suspended Plasma": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Water": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Aqueous Liquids": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      },
-      "Synthetic Oil": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Electrolytes": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Ionic Solutions": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Oxygen": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Aqueous Liquids": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "Vaccines": {
-    "output_qty": 1,
-    "inputs": {
-      "Livestock": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Biofuels": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Carbon Compounds": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Proteins": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Complex Organisms": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      },
-      "Viral Agent": {
-        "output_qty": 3.333333333333333,
-        "inputs": {
-          "Bacteria": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Micro Organisms": {
-                "output_qty": 4000.0
-              }
-            }
-          },
-          "Biomass": {
-            "output_qty": 26.666666666666664,
-            "inputs": {
-              "Autotrophs": {
-                "output_qty": 4000.0
-              }
-            }
-          }
-        }
-      }
-    }
+  "VOLUME_PER_UNIT": {
+    "P1": 0.19,
+    "P2": 0.75,
+    "P3": 3.0,
+    "P4": 50.0
   }
 }

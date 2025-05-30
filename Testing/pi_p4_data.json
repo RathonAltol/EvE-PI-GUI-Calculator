@@ -1,0 +1,383 @@
+{
+  "PI_DATA": {
+    "Broadcast Node": {
+      "inputs": {
+        "Data Chip": 6,
+        "Neocom": 6,
+        "High-Tech Transmitter": 6
+      }
+    },
+    "Data Chip": {
+      "inputs": {
+        "Supertensile Plastics": 10,
+        "Microfiber Shielding": 10
+      }
+    },
+    "Supertensile Plastics": {
+      "inputs": {
+        "Oxygen": 40,
+        "Biomass": 40
+      }
+    },
+    "Oxygen": {
+      "inputs": {
+        "Noble Gas": 3000
+      }
+    },
+    "Biomass": {
+      "inputs": {
+        "Plantic Colonies": 3000
+      }
+    },
+    "Microfiber Shielding": {
+      "inputs": {
+        "Silicon": 40,
+        "Industrial Fibers": 40
+      }
+    },
+    "Silicon": {
+      "inputs": {
+        "Felsic Magma": 3000
+      }
+    },
+    "Neocom": {
+      "inputs": {
+        "Biocells": 10,
+        "Silicate Glass": 10
+      }
+    },
+    "Biocells": {
+      "inputs": {
+        "Biofuels": 40,
+        "Precious Metals": 40
+      }
+    },
+    "Biofuels": {
+      "inputs": {
+        "Carbon Compounds": 3000
+      }
+    },
+    "Precious Metals": {
+      "inputs": {
+        "Noble Metals": 3000
+      }
+    },
+    "Silicate Glass": {
+      "inputs": {
+        "Oxidizing Compound": 40,
+        "Silicon": 40
+      }
+    },
+    "Oxidizing Compound": {
+      "inputs": {
+        "Reactive Gas": 3000
+      }
+    },
+    "High-Tech Transmitter": {
+      "inputs": {
+        "Transmitter": 10,
+        "Polyaramids": 10
+      }
+    },
+    "Transmitter": {
+      "inputs": {
+        "Chiral Structures": 40,
+        "Plasmoids": 40
+      }
+    },
+    "Chiral Structures": {
+      "inputs": {
+        "Non-CS Crystals": 3000
+      }
+    },
+    "Plasmoids": {
+      "inputs": {
+        "Suspended Plasma": 3000
+      }
+    },
+    "Polyaramids": {
+      "inputs": {
+        "Oxidizing Compound": 40,
+        "Industrial Fibers": 40
+      }
+    },
+    "Industrial Fibers": {
+      "inputs": {
+        "Autotrophs": 3000
+      }
+    },
+    "Integrity Response Drones": {
+      "inputs": {
+        "Gel-Matrix Biopaste": 6,
+        "Planetary Vehicles": 6,
+        "Hazmat Detection Systems": 6
+      }
+    },
+    "Gel-Matrix Biopaste": {
+      "inputs": {
+        "Superconductors": 10,
+        "Biocells": 10,
+        "Oxides": 10
+      }
+    },
+    "Superconductors": {
+      "inputs": {
+        "Plasmoids": 40,
+        "Water": 40
+      }
+    },
+    "Planetary Vehicles": {
+      "inputs": {
+        "Supertensile Plastics": 10,
+        "Miniature Electronics": 10,
+        "Mechanical Parts": 10
+      }
+    },
+    "Miniature Electronics": {
+      "inputs": {
+        "Silicon": 40,
+        "Chiral Structures": 40
+      }
+    },
+    "Mechanical Parts": {
+      "inputs": {
+        "Reactive Metals": 40,
+        "Precious Metals": 40
+      }
+    },
+    "Hazmat Detection Systems": {
+      "inputs": {
+        "Transmitter": 10,
+        "Viral Agent": 10,
+        "Polytextiles": 10
+      }
+    },
+    "Viral Agent": {
+      "inputs": {
+        "Bacteria": 40,
+        "Biomass": 40
+      }
+    },
+    "Polytextiles": {
+      "inputs": {
+        "Biofuels": 40,
+        "Industrial Fibers": 40
+      }
+    },
+    "Water": {
+      "inputs": {
+        "Aqueous Liquids": 3000
+      }
+    },
+    "Oxides": {
+      "inputs": {
+        "Oxidizing Compound": 40
+      }
+    },
+    "Reactive Metals": {
+      "inputs": {
+        "Base Metals": 3000
+      }
+    },
+    "Bacteria": {
+      "inputs": {
+        "Microorganisms": 3000
+      }
+    },
+    "Biotech Research Reports": {
+      "inputs": {
+        "Test Cultures": 6,
+        "Nanite Repair Paste": 3,
+        "Gel-Matrix Biopaste": 3
+      }
+    },
+    "Camera Drones": {
+      "inputs": {
+        "Guidance Systems": 6,
+        "Miniature Electronics": 6,
+        "Transmitter": 6
+      }
+    },
+    "Cryoprotectant Solution": {
+      "inputs": {
+        "Gel-Matrix Biopaste": 6,
+        "Viral Agent": 6,
+        "Livestock": 6
+      }
+    },
+    "Guidance Systems": {
+      "inputs": {
+        "Transmitter": 6,
+        "Microfiber Shielding": 6,
+        "Miniature Electronics": 6
+      }
+    },
+    "Hermetic Membranes": {
+      "inputs": {
+        "Industrial Fibers": 6,
+        "Synthetic Oil": 6,
+        "Coolant": 6
+      }
+    },
+    "Industrial Explosives": {
+      "inputs": {
+        "Oxidizing Compound": 6,
+        "Toxic Metals": 6,
+        "Coolant": 6
+      }
+    },
+    "Nuclear Reactors": {
+      "inputs": {
+        "Enriched Uranium": 6,
+        "Mechanical Parts": 6,
+        "Miniature Electronics": 6
+      }
+    },
+    "Robotics": {
+      "inputs": {
+        "Mechanical Parts": 6,
+        "Consumer Electronics": 6,
+        "Oxygen": 6
+      }
+    },
+    "Smartfab Units": {
+      "inputs": {
+        "Synthetic Synapses": 6,
+        "Industrial Fibers": 6,
+        "Superconductors": 6
+      }
+    },
+    "Supercomputers": {
+      "inputs": {
+        "Ukomi Superconductors": 6,
+        "Transcranial Microcontrollers": 6,
+        "Neocoms": 3
+      }
+    },
+    "Synthetic Synapses": {
+      "inputs": {
+        "Transcranial Microcontrollers": 6,
+        "Superconductors": 6,
+        "Biocells": 6
+      }
+    },
+    "Ukomi Superconductors": {
+      "inputs": {
+        "Superconductors": 6,
+        "Biocells": 6,
+        "Oxidizing Compound": 6
+      }
+    },
+    "Vaccines": {
+      "inputs": {
+        "Test Cultures": 6,
+        "Livestock": 6,
+        "Gel-Matrix Biopaste": 3
+      }
+    }
+  },
+  "TIERS": {
+    "P4": [
+      "Broadcast Node",
+      "Integrity Response Drones",
+      "Nano-Factory",
+      "Organic Mortar Applicators",
+      "Recursive Computing Module",
+      "Self-Harmonizing Power Core",
+      "Sterile Conduits",
+      "Wetware Mainframe"
+    ],
+    "P3": [
+      "Biotech Research Reports",
+      "Camera Drones",
+      "Condensates",
+      "Cryoprotectant Solution",
+      "Data Chip",
+      "Gel-Matrix Biopaste",
+      "Guidance Systems",
+      "Hazmat Detection Systems",
+      "Hermetic Membranes",
+      "High-Tech Transmitter",
+      "Industrial Explosives",
+      "Neocom",
+      "Nuclear Reactors",
+      "Planetary Vehicles",
+      "Robotics",
+      "Smartfab Units",
+      "Supercomputers",
+      "Synthetic Synapses",
+      "Transcranial Microcontrollers",
+      "Ukomi Superconductors",
+      "Vaccines"
+    ],
+    "P2": [
+      "Biocells",
+      "Construction Blocks",
+      "Consumer Electronics",
+      "Coolant",
+      "Enriched Uranium",
+      "Fertilizer",
+      "Genetically Enhanced Livestock",
+      "Livestock",
+      "Mechanical Parts",
+      "Microfiber Shielding",
+      "Miniature Electronics",
+      "Nanites",
+      "Oxides",
+      "Polyaramids",
+      "Polytextiles",
+      "Rocket Fuel",
+      "Silicate Glass",
+      "Superconductors",
+      "Supertensile Plastics",
+      "Synthetic Oil",
+      "Test Cultures",
+      "Transmitter",
+      "Viral Agent",
+      "Water-Cooled CPU"
+    ],
+    "P1": [
+      "Bacteria",
+      "Biofuels",
+      "Biomass",
+      "Chiral Structures",
+      "Electrolytes",
+      "Industrial Fibers",
+      "Oxidizing Compound",
+      "Oxygen",
+      "Plasmoids",
+      "Precious Metals",
+      "Proteins",
+      "Reactive Metals",
+      "Silicon",
+      "Toxic Metals",
+      "Water"
+    ],
+    "P0": [
+      "Aqueous Liquids",
+      "Autotrophs",
+      "Base Metals",
+      "Carbon Compounds",
+      "Felsic Magma",
+      "Microorganisms",
+      "Noble Gas",
+      "Noble Metals",
+      "Non-CS Crystals",
+      "Plantic Colonies",
+      "Reactive Gas",
+      "Suspended Plasma"
+    ]
+  },
+  "VOLUME_PER_HOUR": {
+    "P1": 7.6,
+    "P2": 3.9,
+    "P3": 9.0,
+    "P4": 50.0
+  },
+  "VOLUME_PER_UNIT": {
+    "P1": 0.19,
+    "P2": 0.75,
+    "P3": 3.0,
+    "P4": 50.0
+  }
+}
